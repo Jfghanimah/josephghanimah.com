@@ -3,3 +3,6 @@ __pycache__/
 
 # Environment
 venv/
+
+# VS Code
+.vscode/

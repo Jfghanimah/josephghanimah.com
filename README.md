@@ -1,2 +1,2 @@
 # josephghanimah.com
-Personal website code
+This repository serves as the codebase to Joseph Ghanimah's personal website. It also serves as a way to demonstrate my skills in Python (Flask), HTML, CSS, and JS.

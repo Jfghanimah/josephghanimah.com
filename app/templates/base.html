@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <meta name="theme-color" content="#7e57c2" />
+  <meta name="description" content="G3 Circuit is a Call of Duty PC League 
+  committed to providing the best platform for competitive players to compete at the highest level." />
+
+  {% if title %}
+  <title>College CoD - {{title}}</title>
+  {% else %}
+  <title>College CoD League</title>
+  {% endif %}
+
+
+  <!-- Icon for top of the page -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='ccl-favicon.ico') }}">
+  <!-- Google fonts API -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <!-- Materialize CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+  <!-- Project CSS  -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+</head>
+
+<body>
+
+  <header>
+
+    <!-- Top navbar -->
+    <div class="navbar-fixed">
+      <nav role="navigation">
+        <div class="nav-wrapper container">
+
+          <a id="logo-container" href="{{ url_for('main.home') }}" class="brand-logo"><img width="68" height="68"
+              src="{{ url_for('static',filename='images/CCL cutout.webp') }}"></a>
+          <ul class="top right hide-on-med-and-down">
+            <li class="top"><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li class="top"><a href="{{ url_for('main.home') }}">News</a></li>
+            <li class="top"><a href="{{ url_for('main.home') }}">Standings</a></li>
+          </ul>
+
+
+          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobile navbar -->
+    <ul id="nav-mobile" class="sidenav" id="mobile-links">
+      <li><a href="{{ url_for('main.home') }}">Home</a></li>
+    </ul>
+
+
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="container center-align">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="row card alert_box {{category}}" id='alert_box'>
+        <div class="card-content white-text">
+          <p> {{ message }} </p>
+          <i class="fa fa-times right alert_close" id="alert_close" aria-hidden="true" style="
+                    position: absolute;
+                    right: 30px;
+                    top: 25px;
+                    font-size: 18px;
+                    cursor:pointer; "></i>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="page-footer" id="footer-settings">
+    <div class="container">
+      <div class="row">
+
+        <div class="col l6 s12">
+          <h5 class="grey-text text-lighten-1">Resources</h5>
+          <ul>
+            <li><a class="" href="#">About</a></li>
+            <li><a class="" href="#">FAQ</a></li>
+            <li><a class="" href="#">Support</a></li>
+            <li><a class="" href="#">Jobs</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="grey-text text-lighten-1">Contact</h5>
+          <ul>
+            <li class="grey-text text-lighten-1">Jaden Shaw, President of CCL</li>
+            <li class="grey-text text-lighten-1">jbyrd@collegecod.com</li>
+            <br>
+            <li class="grey-text text-lighten-1">Joseph Ghanimah, Website Developer</li>
+            <li class="grey-text text-lighten-1">jfg@collegecod.com</li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="grey-text text-lighten-1">Connect</h5>
+          <ul>
+            <li><a class="" href="https://discord.gg/UDJStkE" target="_blank">
+                <i class="fab fa-discord"> </i> Discord</a></li>
+            <li><a class="" href="https://twitter.com/CollegeCoD" target="_blank">
+                <i class="fab fa-twitter"> </i> Twitter</a></li>
+            <li><a class="" href="https://instagram.com/collegecodleague/" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a class="" href="https://www.youtube.com/channel/UCfatPv71Fm5F4V8ztdgxg7A" target="_blank">
+                <i class="fab fa-youtube"></i> YouTube</a></li>
+            <li><a class="" href="https://www.twitch.tv/collegecod" target="_blank">
+                <i class="fab fa-twitch"></i> Twitch</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;" class="footer-copyright">
+      <div style="text-align:center;" class="container grey-text text-lighten-2">
+        <p> © 2020 Joseph Ghanimah. </p>
+      </div>
+    </div>
+  </footer>
+
+  <!--  Scripts-->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="{{ url_for('static',filename='js/init.js') }}"></script>
+
+</body>
+
+</html>

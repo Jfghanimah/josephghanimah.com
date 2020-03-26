@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Main picture -->
+
+<div class="z-depth-2 container grey darken-4">
+  <img width="100%" src="{{ url_for('static',filename='images/CCL banner.webp') }}">
+  <div class="section">
+
+    <div class="row">
+
+      <!-- Blog Section   -->
+      <div class="col s8">
+
+        {% for post in posts %}
+        <a href="#">
+          <article class="card hoverable small grey darken-3 z-depth-1">
+
+            <div class="card-image">
+              <img width="" height="" src="{{ post.image }}" style="top: 50%; transform: translateY(-10%);">
+
+              <span class="card-title card white-text transparent-1">{{ post.title }}</span>
+
+            </div>
+
+            <div class="card-content">
+              <span class="card-title">
+                <p class="yellow-text darken-3"> {{ post.author }} - {{ post.date_posted }} <i
+                    class="material-icons">date_range</i> </p>
+              </span>
+              <p class="white-text"> {{ post.content }} </p>
+            </div>
+
+          </article>
+        </a>
+        {% endfor %}
+
+      </div>
+
+
+      <!-- Twitter Section   -->
+      <div class="col s4 ">
+        <div class="card grey darken-3">
+          <a class="twitter-timeline" data-dnt="true" data-height="1000" data-theme="dark"
+            data-chrome="transparent noscrollbar nofooter" data-link-color="#ffdb59"
+            href="https://twitter.com/CollegeCoD?ref_src=twsrc%5Etfw">Tweets by CollegeCoD</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+{% endblock content %}

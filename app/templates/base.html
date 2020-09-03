@@ -5,19 +5,18 @@
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <meta name="theme-color" content="#7e57c2" />
-  <meta name="description" content="G3 Circuit is a Call of Duty PC League 
-  committed to providing the best platform for competitive players to compete at the highest level." />
+  <meta name="theme-color" content="#a185ff" />
+  <meta name="description" content="Personal website to showcase me!" />
 
   {% if title %}
-  <title>College CoD - {{title}}</title>
+    <title>Joseph Ghanimah | {{title}}</title>
   {% else %}
-  <title>College CoD League</title>
+    <title>Joseph Ghanimah</title>
   {% endif %}
 
 
   <!-- Icon for top of the page -->
-  <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='ccl-favicon.ico') }}">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='favicon.ico') }}">
   <!-- Google fonts API -->
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <!-- Materialize CSS  -->
@@ -40,12 +39,10 @@
       <nav role="navigation">
         <div class="nav-wrapper container">
 
-          <a id="logo-container" href="{{ url_for('main.home') }}" class="brand-logo"><img width="68" height="68"
-              src="{{ url_for('static',filename='images/CCL cutout.webp') }}"></a>
+          <a class="top large material-icons" href="{{ url_for('main.home') }}">home</a>
           <ul class="top right hide-on-med-and-down">
             <li class="top"><a href="{{ url_for('main.home') }}">Home</a></li>
-            <li class="top"><a href="{{ url_for('main.home') }}">News</a></li>
-            <li class="top"><a href="{{ url_for('main.home') }}">Standings</a></li>
+            <li class="top"><a href="{{ url_for('main.home') }}">Blog</a></li>
           </ul>
 
 
@@ -57,7 +54,8 @@
 
     <!-- Mobile navbar -->
     <ul id="nav-mobile" class="sidenav" id="mobile-links">
-      <li><a href="{{ url_for('main.home') }}">Home</a></li>
+      <li><a href="{{ url_for('main.home') }}">Home</a></li>      
+      <li class="top"><a href="{{ url_for('main.home') }}">Blog</a></li>
     </ul>
 
 
@@ -105,11 +103,8 @@
         <div class="col l3 s12">
           <h5 class="grey-text text-lighten-1">Contact</h5>
           <ul>
-            <li class="grey-text text-lighten-1">Jaden Shaw, President of CCL</li>
-            <li class="grey-text text-lighten-1">jbyrd@collegecod.com</li>
-            <br>
-            <li class="grey-text text-lighten-1">Joseph Ghanimah, Website Developer</li>
-            <li class="grey-text text-lighten-1">jfg@collegecod.com</li>
+            <li class="grey-text text-lighten-1">Joseph Ghanimah</li>
+            <li class="grey-text text-lighten-1">jfghanimah@gmail.com</li>
           </ul>
         </div>
         <div class="col l3 s12">
@@ -131,7 +126,7 @@
     </div>
     <div style="text-align:center;" class="footer-copyright">
       <div style="text-align:center;" class="container grey-text text-lighten-2">
-        <p> © 2020 Joseph Ghanimah. </p>
+        <p> © 2020 Joseph Ghanimah</p>
       </div>
     </div>
   </footer>

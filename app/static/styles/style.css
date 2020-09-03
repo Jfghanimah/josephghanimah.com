@@ -3,10 +3,8 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: rgb(16, 17, 16);
-
-  /*background-image: url("../images/reapreatingbackground.gif");
-  background-repeat: repeat;*/
+  background: rgb(255,74,214);
+  background: linear-gradient(347deg, rgba(255,74,214,1) 0%, rgba(225,85,255,1) 31%, rgba(0,142,255,1) 62%, rgba(138,191,255,1) 100%);
 }
 
 main {
@@ -14,7 +12,7 @@ main {
 }
 
 .transparent-1 {
-  background-color: rgba(24, 21, 0, 0.700)
+  background-color: rgba(10, 15, 50, 0.700)
 }
 
 img {
@@ -30,10 +28,6 @@ li.top:hover {
   transition-duration: 0.35s;
 }
 
-#sign-in-button:hover {
-  background-color: rgba(50, 210, 255, 0.4);
-  transition-duration: 0.35s;
-}
 
 li.top a.active {
   background-color: rgb(100, 0, 150, 0.70);
@@ -44,15 +38,7 @@ li.top a.active {
   color: #000 !important;
 }
 
-/*Black color to the text*/
-
-/* .tabs .tab a:hover {
-  background-color: #eee !important;
-  color: #000 !important;
-} */
-
 /*Text color on hover*/
-
 .tabs .tab a:focus {
   background-color: #eee !important;
   color: #000 !important;
@@ -64,26 +50,22 @@ li.top a.active {
 }
 
 /*Text color on hover*/
-
 .tabs .tab a.active {
   background-color: #888 !important;
   color: #000 !important;
 }
 
 /*Background and text color when a tab is active*/
-
 .tabs .indicator {
   background-color: #000 !important;
 }
 
 /*Color of underline*/
-
 a.disabled {
   color: grey;
 }
 
 /* Checkbox login / register page */
-
 [type="checkbox"].filled-in:checked+span:not(.lever):after {
   top: 0;
   width: 20px;
@@ -101,181 +83,10 @@ a.disabled {
   font-size: inherit;
 }
 
+.material-icons {
+  vertical-align: middle;
+}
+
 .page-footer {
   background-color: rgb(25, 25, 25) !important;
-}
-
-
-
-/*
-new goodies
-new goodies
-new goodies
-new goodies
-new goodies
-new goodies
-new goodies
-new goodies
-*/
-
-
-#bracket {
-  background-color: #e1e1e1;
-  background-color: rgba(225, 225, 225, 0.9);
-  padding-top: 10px;
-  padding-left: 50px;
-  font-size: 15px;
-  padding: 10px 0;
-}
-
-
-.champion {
-  float: left;
-  display: block;
-  width: 16%;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  align-self: center;
-  margin-top: -15px;
-  text-align: center;
-  padding: 230px 0\9;
-}
-
-
-.champion i {
-  color: #a0a6a8;
-  font-size: 45px;
-  padding: 10px 0;
-}
-
-
-.round {
-  width: 80%;
-  width: 30.8333%\4;
-}
-
-
-.matchup {
-  margin: 0;
-  width: 100%;
-  padding: 10px 0;
-  height: 60px;
-  -webkit-transition: all 0.2s;
-  transition: all .5;
-}
-
-
-.score {
-  font-size: 15px;
-  text-transform: uppercase;
-  color:rgb(112, 23, 153);
-  font-family: 'Roboto Condensed', sans-serif;
-  width: 25px;
-  height: 25px;
-  float: right;
-  right: -5px;
-  padding-left: 8px;
-  border: 1px solid rgb(0, 0, 0);
-  position: relative;
-  z-index: 10;
-}
-s
-.score:after {
-  content: ' ';
-  display: block;
-  position: absolute;
-  top: 0px;
-  left: 10px;
-  right: 0px;
-  bottom: 2px;
-  z-index: -1;
-}
-
-.team {
-  padding: 0 5px;
-  margin: 3px 0;
-  height: 25px;
-  line-height: 25px;
-  white-space: nowrap;
-  overflow: hidden;
-  position: relative;
-}
-
-
-.round-one .matchup {
-  margin: 0;
-  height: 60px;
-  padding: 10px 0;
-}
-
-
-.round-two .matchup {
-  margin: 0;
-  height: 60px;
-  padding: 50px 0;
-}
-
-
-.round-three .matchup {
-  margin: 0;
-  height: 60px;
-  padding: 100px 0;
-}
-
-
-.round-four .matchup {
-  margin: 0;
-  height: 60px;
-  padding: 200px 0;
-}
-
-
-.round-details {
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 13px;
-  color: rgb(112, 23, 153);
-  text-transform: uppercase;
-  text-align: center;
-  height: 40px;
-}
-
-
-.champion li,
-.round li {
-  background-color: #fff;
-  box-shadow: none;
-  opacity: 0.45;
-}
-
-
-.current li {
-  opacity: 1;
-}
-
-
-.winner{
-  opacity: 1;
-}
-
-.winner span.score{
-  background-color:rgb(141, 233, 132);
-  font-weight: bold;
-}
-
-.winner span.score:after{
-  background-color:rgb(141, 233, 132);
-
-}
-
-
-.current li.team {
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  opacity: 1;
-}
-
-
-.final {
-  margin: 4.5em 0;
 }

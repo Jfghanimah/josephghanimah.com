@@ -18,7 +18,7 @@ posts = [
     },
     {
         "id" : 2,
-        "author": 'Adam Ghanimah',
+        "author": 'Joseph Ghanimah',
         "type": 'blog',
         "title": 'Black Ops 4: Release Date!',
         "content": """It is a long established fact that a reader will be distracted 
@@ -29,7 +29,7 @@ posts = [
     },
     {
         "id" : 3,
-        "author": 'Shrek Shrekington',
+        "author": 'Joseph Ghanimah',
         "type": 'image',
         "title": 'Week 3 Tournament',
         "content": """It is a long established fact that a reader will be distracted 
@@ -41,12 +41,8 @@ posts = [
 ]
 
 
-@main.route("/")
-@main.route("/home")
 @main.route("/index")
+@main.route("/home")
+@main.route("/")
 def home():
-    return render_template("home.html", posts=posts, title='Home')
-
-@main.route("/sample")
-def sample():
-    return render_template("sample.html", title="Sample")
+    return render_template("home.html", posts=posts)

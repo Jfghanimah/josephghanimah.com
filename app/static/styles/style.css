@@ -3,8 +3,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background: rgb(255,74,214);
-  background: linear-gradient(347deg, rgba(255,74,214,1) 0%, rgba(225,85,255,1) 31%, rgba(0,142,255,1) 62%, rgba(138,191,255,1) 100%);
+  background: linear-gradient(347deg, rgb(212, 62, 177) 0%, rgb(179, 67, 204) 31%, rgb(1, 114, 206) 100%);
 }
 
 main {
@@ -20,7 +19,7 @@ img {
 }
 
 nav {
-  background-color: rgb(30, 30, 30, 0.8);
+  background-color: rgb(15, 15, 15, 0.8);
 }
 
 li.top:hover {

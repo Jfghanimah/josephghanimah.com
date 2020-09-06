@@ -1,29 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- Main picture -->
-<div class="container">
-  <h2 class="center-align">Joseph F. Ghanimah</h2>
+<!-- Picture and Intro -->
+<div class="container center-align white-text fade-in">
+  <br><br>
+  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
+  <h1>Joseph F. Ghanimah</h1>
+  <p class="grey-text text-lighten-1" style="font-size: calc(1.5vw + 10px);">
+    I'm a Junior at The University of Illinois at Urbana-Champaign. Majoring in Computer Engineering with minors in
+    Mathematical Statistics and Data Science. I have past experience in various projects involving Machine Learning, Data Science, Predictive
+    analytics, and Cloud Computing using tools such as Python, Flask, Django, C++, TensorFlow, and Google Cloud
+    Platform.
+  </p>
   <p>
-    enfjahfuiahifsauirfnenfjahfuiahifsauirfne nfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahi
-    fsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuia
-    hifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsa
-    uirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjah
-    fuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahi
-    fsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenf
-    jahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfn
-    enfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfnenfjahfuiahifsauirfn
+
   </p>
 </div>
 
+<!-- Project Slab -->
 <div class="z-depth-2 container grey darken-4">
 
-
-  <img width="100%" src="{{ url_for('static',filename='images/CCL banner.webp') }}">
   <div class="section">
-
-
-
 
 
     <!-- Updates (Blog and twitter) -->
@@ -116,6 +113,15 @@
             <a class="blue-text" href="#">Statue</a>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 center-align">
+        <h2 class="white-text">Resume</h2>
+        <a href="static/images/Resume.pdf" target="_blank">
+          <img class="center-align" src="static/images/resume.png">
+        </a>
       </div>
     </div>
 

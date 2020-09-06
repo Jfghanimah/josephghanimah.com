@@ -6,7 +6,16 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <meta name="theme-color" content="#a185ff" />
-  <meta name="description" content="Personal website to showcase me!" />
+  <meta name="description" content="My personal website." />
+
+  <!-- Open Graph XML -->
+  <meta property="og:title" content="Joseph Ghanimah" />
+  <meta property="og:description" content="My personal website." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="josephghanimah.com" />
+  <meta property="og:image" content="{{ url_for('static',filename='images/headshot-square.jpg') }}" />
+  <meta property="og:image:width" content="600" />
+  <meta property="og:image:height" content="300" />
 
   {% if title %}
     <title>Joseph Ghanimah | {{title}}</title>
@@ -18,7 +27,7 @@
   <!-- Icon for top of the page -->
   <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='favicon.ico') }}">
   <!-- Google fonts API -->
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
   <!-- Materialize CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
@@ -32,104 +41,112 @@
 
 <body>
 
-  <header>
-
-    <!-- Top navbar -->
-    <div class="navbar-fixed">
-      <nav role="navigation">
-        <div class="nav-wrapper container">
-
-          <a class="top large material-icons" href="{{ url_for('main.home') }}">home</a>
-          <ul class="top right hide-on-med-and-down">
-            <li class="top"><a href="{{ url_for('main.home') }}">Home</a></li>
-            <li class="top"><a href="{{ url_for('main.home') }}">Blog</a></li>
-          </ul>
+  
 
 
-          <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-
+  <div class="parallax_group">
+    <div class="parallax_layer parallax_layer_back">
+    </div>
+    
+    <div class="parallax_layer parallax_layer_front">
+      
+      <!-- HEADER -->
+      <header>
+        <!-- Top navbar -->
+        <div class="navbar-fixed">
+          <nav role="navigation">
+            <div class="nav-wrapper container">
+              <a class="top large material-icons" href="{{ url_for('main.home') }}">home</a>
+              <ul class="top right hide-on-med-and-down">
+                <li class="top"><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li class="top"><a href="{{ url_for('main.home') }}">Blog</a></li>
+              </ul>
+              <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
+          </nav>
         </div>
-      </nav>
+    
+        <!-- Mobile navbar -->
+        <ul id="nav-mobile" class="sidenav" id="mobile-links">
+          <li><a href="{{ url_for('main.home') }}">Home</a></li>      
+          <li class="top"><a href="{{ url_for('main.home') }}">Blog</a></li>
+        </ul>
+    
+        <div class="container center-align">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          {% for category, message in messages %}
+          <div class="row card alert_box {{category}}" id='alert_box'>
+            <div class="card-content white-text">
+              <p> {{ message }} </p>
+              <i class="fa fa-times right alert_close" id="alert_close" aria-hidden="true" style="
+                        position: absolute;
+                        right: 30px;
+                        top: 25px;
+                        font-size: 18px;
+                        cursor:pointer; "></i>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
+        </div>
+    
+      </header>
+
+      <!-- CONTENT -->
+      {% block content %}
+      {% endblock %}
+
+      <!-- FOOTER -->
+      <footer class="page-footer" id="footer-settings">
+        <div class="container">
+          <div class="row">
+
+            <div class="col l6 s12">
+              <h5 class="grey-text text-lighten-1">Resources</h5>
+              <ul>
+                <li><a class="" href="#">About</a></li>
+                <li><a class="" href="#">FAQ</a></li>
+                <li><a class="" href="#">Support</a></li>
+                <li><a class="" href="#">Jobs</a></li>
+              </ul>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="grey-text text-lighten-1">Contact</h5>
+              <ul>
+                <li class="grey-text text-lighten-1">Joseph Ghanimah</li>
+                <li class="grey-text text-lighten-1">jfghanimah@gmail.com</li>
+              </ul>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="grey-text text-lighten-1">Connect</h5>
+              <ul>
+                <li><a class="" href="https://discord.gg/UDJStkE" target="_blank">
+                    <i class="fab fa-discord"> </i> Discord</a></li>
+                <li><a class="" href="https://twitter.com/CollegeCoD" target="_blank">
+                    <i class="fab fa-twitter"> </i> Twitter</a></li>
+                <li><a class="" href="https://instagram.com/collegecodleague/" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a class="" href="https://www.youtube.com/channel/UCfatPv71Fm5F4V8ztdgxg7A" target="_blank">
+                    <i class="fab fa-youtube"></i> YouTube</a></li>
+                <li><a class="" href="https://www.twitch.tv/collegecod" target="_blank">
+                    <i class="fab fa-twitch"></i> Twitch</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;" class="footer-copyright">
+          <div style="text-align:center;" class="container grey-text text-lighten-2">
+            <p> © 2020 Joseph Ghanimah</p>
+          </div>
+        </div>
+      </footer>
+      
     </div>
 
-    <!-- Mobile navbar -->
-    <ul id="nav-mobile" class="sidenav" id="mobile-links">
-      <li><a href="{{ url_for('main.home') }}">Home</a></li>      
-      <li class="top"><a href="{{ url_for('main.home') }}">Blog</a></li>
-    </ul>
-
-
-  </header>
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <div class="container center-align">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <div class="row card alert_box {{category}}" id='alert_box'>
-        <div class="card-content white-text">
-          <p> {{ message }} </p>
-          <i class="fa fa-times right alert_close" id="alert_close" aria-hidden="true" style="
-                    position: absolute;
-                    right: 30px;
-                    top: 25px;
-                    font-size: 18px;
-                    cursor:pointer; "></i>
-        </div>
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-    </div>
-    {% block content %}
-    {% endblock %}
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="page-footer" id="footer-settings">
-    <div class="container">
-      <div class="row">
-
-        <div class="col l6 s12">
-          <h5 class="grey-text text-lighten-1">Resources</h5>
-          <ul>
-            <li><a class="" href="#">About</a></li>
-            <li><a class="" href="#">FAQ</a></li>
-            <li><a class="" href="#">Support</a></li>
-            <li><a class="" href="#">Jobs</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="grey-text text-lighten-1">Contact</h5>
-          <ul>
-            <li class="grey-text text-lighten-1">Joseph Ghanimah</li>
-            <li class="grey-text text-lighten-1">jfghanimah@gmail.com</li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="grey-text text-lighten-1">Connect</h5>
-          <ul>
-            <li><a class="" href="https://discord.gg/UDJStkE" target="_blank">
-                <i class="fab fa-discord"> </i> Discord</a></li>
-            <li><a class="" href="https://twitter.com/CollegeCoD" target="_blank">
-                <i class="fab fa-twitter"> </i> Twitter</a></li>
-            <li><a class="" href="https://instagram.com/collegecodleague/" target="_blank">
-                <i class="fab fa-instagram"></i> Instagram</a></li>
-            <li><a class="" href="https://www.youtube.com/channel/UCfatPv71Fm5F4V8ztdgxg7A" target="_blank">
-                <i class="fab fa-youtube"></i> YouTube</a></li>
-            <li><a class="" href="https://www.twitch.tv/collegecod" target="_blank">
-                <i class="fab fa-twitch"></i> Twitch</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;" class="footer-copyright">
-      <div style="text-align:center;" class="container grey-text text-lighten-2">
-        <p> © 2020 Joseph Ghanimah</p>
-      </div>
-    </div>
-  </footer>
+  </div>
+ 
 
   <!--  Scripts-->
   <!-- Compiled and minified JavaScript -->

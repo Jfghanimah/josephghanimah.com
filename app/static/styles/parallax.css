@@ -1,0 +1,26 @@
+
+.parallax_group {
+    perspective: 1px;
+    position: relative;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.parallax_layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.parallax_layer_back {
+    transform: translateZ(-4px) scale(7.1);
+    background: url("../images/texture2.png") repeat, linear-gradient(345deg, rgb(3, 99, 155)20% , rgb(179, 28, 143)80%);
+    height: 1380px;
+}
+
+.parallax_layer_front {
+    transform: translateZ(0);
+}

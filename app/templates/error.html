@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .parallax_layer_back {
+        height: 1100px !important;
+    }
+</style>
+
+<div class='container section center white-text'>
+
+        <h1 style="font-size:2000%">:(</h1>  
+        <h2 class="grey-text text-lighten-1">Error: <b class="cyan-text">{{code}}</b></h2>
+        <h1>{{message}}</h1>        
+        <h6>{{description}}</h6>
+        <br>
+        <a class="waves-effect waves-light btn cyan black-text" href="javascript:history.back()"> <h6><b>⯇ GO BACK</b></h6> </a>
+        <br><br>
+
+</div>
+
+{% endblock content %}

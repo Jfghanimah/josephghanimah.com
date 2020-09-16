@@ -12,9 +12,9 @@ def create_app(config_class=Config):
     app.config.from_object(Config)
 
     from app.main.routes import main
-    #from app.errors.handlers import errors
+    from app.errors.handlers import errors
 
     app.register_blueprint(main)
-    #app.register_blueprint(errors)
+    app.register_blueprint(errors)
 
     return app

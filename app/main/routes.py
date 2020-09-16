@@ -40,9 +40,24 @@ posts = [
     }
 ]
 
+# this STS is to for HTTPS connections
+@main.after_request
+def apply_caching(response):
+    response.headers["Strict-Transport-Security"] = 'max-age=63072000; includeSubDomains; preload'
+    response.headers
+    return response
+
+
+@main.route('/robots.txt')
+@main.route('/sitemap.xml')
+@main.route('/favicon.ico')
+def static_from_root():
+    return send_from_directory(current_app.static_folder, request.path[1:])
+
 
 @main.route("/index")
 @main.route("/home")
 @main.route("/")
 def home():
     return render_template("home.html", posts=posts)
+

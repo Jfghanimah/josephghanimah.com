@@ -1,9 +1,10 @@
 @import "scrollbar.css";
 @import "parallax.css";
 
-html, body {
+* {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -11,20 +12,20 @@ body {
   font-weight: 300;
   min-height: 100vh;
   flex-direction: column;
-  /*background: url("../images/texture.png") repeat, linear-gradient(347deg, rgb(1, 114, 206) , rgb(167, 41, 137));*/
+  /*background: url("../images/texture.png") repeat, linear-gradient(347deg, rgb(1, 114, 206) , rgb(167, 41, 137));*/ /* Moved to parallax.css */
 }
 
 .fade-in {
-  animation: fadeIn linear 1s;
+  animation: fadeIn linear 1.5s;
   animation-fill-mode: forwards;  
-  }
-  @keyframes fadeIn {
-    from  {opacity: 0;}
-    to    {opacity: 1;}
-  }
+}
+@keyframes fadeIn {
+  from  {opacity: 0;}
+  to    {opacity: 1;}
+}
 
 .transparent-1 {
-  background-color: rgba(10, 15, 50, 0.700)
+  background-color: rgba(10, 10, 15, 0.700)
 }
 
 img {
@@ -34,9 +35,21 @@ img {
 nav {
   background-color: rgb(10, 10, 10, 0.8);
   backdrop-filter: blur(5px);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  
 }
 
-li.top:hover {
+#slab {
+  background-color: rgb(20, 20, 20, 0.85);  
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+}
+
+
+li.top:hover, li.top:hover{
   background-color: rgba(50, 241, 255, 0.4);
   transition-duration: 0.35s;
 }
@@ -46,14 +59,8 @@ li.top a.active {
   transition-duration: 1s;
 }
 
-.tabs .tab a {
-  color: #000 !important;
-}
-
-/*Text color on hover*/
-.tabs .tab a:focus {
-  background-color: #eee !important;
-  color: #000 !important;
+.input-field [type=text], textarea, .character-counter{
+  color: #ffffff !important;
 }
 
 /* Icon color on hover*/

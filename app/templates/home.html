@@ -12,21 +12,33 @@
     analytics, and Cloud Computing using tools such as Python, Flask, Django, C++, TensorFlow, and Google Cloud
     Platform.
   </p>
-  <p>
-
-  </p>
+  <br><br>
 </div>
 
 <!-- Project Slab -->
 <div class="z-depth-2 container grey darken-4">
+  
+    <nav id="slab" >   
+        <div class="brand-logo center" >
+            <ul>
+                <li class="top"><a href="#projects" style="font-size: calc(1.3vw + 7px);">Projects</a></li>
+                <li class="top"><a href="#glicko" style="font-size: calc(1.3vw + 7px);">Glicko</a></li>
+                <li class="top"><a href="#resume" style="font-size: calc(1.3vw + 7px);">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
 
+
+  
   <div class="section">
-
-
-    <!-- Updates (Blog and twitter) -->
+    <!-- Projects Section (Blog and twitter) -->
+    <br id="projects">
     <div class="row">
 
-      <!-- Blog Section   -->
+      <h1 class="white-text center-align" >Projects</h1>
+
+
+      <!-- Blog -->
       <div class="col s8">
 
         {% for post in posts %}
@@ -55,7 +67,7 @@
       </div>
 
 
-      <!-- Twitter Section   -->
+      <!-- Twitter -->
       <div class="col s4 ">
         <div class="card grey darken-3">
           <a class="twitter-timeline" data-dnt="true" data-height="925" data-theme="dark"
@@ -64,11 +76,18 @@
           <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
-
+    
     </div>
+    <div class="divider"></div>
 
 
-    <div class="row">
+    <!-- Glicko Section -->
+    <br id="projects">
+    <div class="row white-text" id="glicko">
+
+      <h1 class="white-text center-align">Glicko</h1>
+      <br>
+
       <div class="col s12 m4">
         <div class="card grey darken-2 hoverable">
           <div class="card-image">
@@ -114,17 +133,105 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
+    </div>    
+    <div class="divider"></div>
+
+
+
+    <!-- Resume Section -->
+    <br id="projects">
+    <div class="row" id="resume">
+      
+      <h1 class="white-text center-align">Resume</h1>
+      <br>
       <div class="col s12 center-align">
-        <h2 class="white-text">Resume</h2>
         <a href="static/images/Resume.pdf" target="_blank">
           <img class="center-align" src="static/images/resume.png">
         </a>
       </div>
+
     </div>
+  </div>
+</div>
+
+<br><br><br id="contact" ><br><br><br><br><br>
+<!-- Contact me section -->
+<div class="container">
+  <h3 class="center-align white-text" >Contact me</h3>
+  <div class="row">
+
+
+
+    <form class="col s8 offset-s2" method="post" action="/">
+      {{ form.csrf_token }}
+
+      <div class="row">
+        <div class="input-field col s6">
+          {{ form.name(class = "validate")}}
+          {{ form.name.label(class = "")}}
+
+          {% if form.name.errors %}
+              {% for error in form.name.errors %}
+                  <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s6">
+          {{ form.email(class = "validate")}}
+          {{ form.email.label(class = "")}}
+
+          {% if form.email.errors %}
+              {% for error in form.email.errors %}
+                  <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          {{ form.subject(class = "validate")}}
+          {{ form.subject.label(class = "")}}
+
+          {% if form.subject.errors %}
+              {% for error in form.subject.errors %}
+                  <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          {{ form.message(class = "materialize-textarea")}}
+          {{ form.message.label(class = "")}}
+
+          {% if form.message.errors %}
+              {% for error in form.message.errors %}
+                  <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row">        
+        <div class="g-recaptcha" data-sitekey="6LdBZM8ZAAAAAJUPpxQqcZFOQ0pk4MFetp4untjU"></div>
+        <br/>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+      
+    </form>
+
+
 
   </div>
 </div>
+<br><br><br><br><br><br><br>
+
 {% endblock content %}

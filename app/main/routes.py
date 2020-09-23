@@ -1,5 +1,10 @@
-from flask import (Blueprint, render_template, redirect,
+import urllib
+import json
+
+from flask import (Blueprint, render_template, redirect, flash ,
                    url_for, send_from_directory, request, current_app)
+
+from app.main.forms import ContactForm
 
 main = Blueprint('main', __name__)
 
@@ -57,7 +62,43 @@ def static_from_root():
 
 @main.route("/index")
 @main.route("/home")
-@main.route("/")
-def home():
-    return render_template("home.html", posts=posts)
+@main.route("/main")
+def redirect_home():
+    return redirect(url_for('main.home'))
 
+
+@main.route("/", methods=['GET', 'POST'])
+def home():
+    form = ContactForm()
+    if form.validate_on_submit():
+        if verify_reCAPTCHA():
+            print(form.name)
+            print(form.subject)
+            print(form.email)
+            print(form.message)
+            flash("Your message has been sent!", "green")
+            return redirect(url_for("main.home"))
+        else:
+            flash("Invalid reCAPTCHA. Please try again.", "red")
+            return redirect(url_for("main.home"))
+    
+    return render_template("home.html", posts=posts, form=form)
+
+
+def send_email():
+    return
+
+
+# Returns True or False depending on the google recaptcha api call
+def verify_reCAPTCHA():
+    recaptcha_response = request.form.get('g-recaptcha-response')
+    url = 'https://www.google.com/recaptcha/api/siteverify'
+    values = {
+        'secret': '6LdBZM8ZAAAAAPf-wUqbv4btign4HerBSqX4ZM7Q',
+        'response': recaptcha_response
+    }
+    data = urllib.parse.urlencode(values).encode()
+    req =  urllib.request.Request(url, data=data)
+    response = urllib.request.urlopen(req)
+    result = json.loads(response.read().decode())
+    return result['success']

@@ -4,46 +4,13 @@ import json
 from flask import (Blueprint, render_template, redirect, flash ,
                    url_for, send_from_directory, request, current_app)
 
+from flask_mail import Message
+
 from app.main.forms import ContactForm
+from app import mail
 
 main = Blueprint('main', __name__)
 
-# this is just a test list
-posts = [
-    {
-        "id" : 1,
-        "author": 'Joseph Ghanimah',
-        "type": 'blog',
-        "title": 'Looking For Writers!',
-        "content": """It is a long established fact that a reader will be distracted 
-        by the readable content of a page when looking at its layout. 
-        """,
-        "date_posted": 'April 20, 2018',
-        "image": 'static/images/blog.webp'
-    },
-    {
-        "id" : 2,
-        "author": 'Joseph Ghanimah',
-        "type": 'blog',
-        "title": 'Black Ops 4: Release Date!',
-        "content": """It is a long established fact that a reader will be distracted 
-        by the readable content of a page when looking at its layout. 
-        """,
-        "date_posted": 'April 21, 2018',
-        "image": 'static/images/bo4.webp'
-    },
-    {
-        "id" : 3,
-        "author": 'Joseph Ghanimah',
-        "type": 'image',
-        "title": 'Week 3 Tournament',
-        "content": """It is a long established fact that a reader will be distracted 
-        by the readable content of a page when looking at its layout. 
-        """,
-        "date_posted": 'April 23, 2018',
-        "image": 'static/images/g3cw3.webp'
-    }
-]
 
 # this STS is to for HTTPS connections
 @main.after_request
@@ -72,21 +39,27 @@ def home():
     form = ContactForm()
     if form.validate_on_submit():
         if verify_reCAPTCHA():
-            print(form.name)
-            print(form.subject)
-            print(form.email)
-            print(form.message)
+            name = form.name.data
+            email = form.email.data
+            subject = form.subject.data
+            body = form.message.data
+            send_email(name=name, subject=subject, email=email, body=body)
             flash("Your message has been sent!", "green")
-            return redirect(url_for("main.home"))
+            return redirect(url_for("main.home")) #This resets the page entirely 
         else:
             flash("Invalid reCAPTCHA. Please try again.", "red")
-            return redirect(url_for("main.home"))
     
-    return render_template("home.html", posts=posts, form=form)
+    if form.email.errors:
+        flash(f"There was an error with your information: {', '.join(form.email.errors)}", "red")
+    
+    return render_template("home.html", form=form)
 
 
-def send_email():
-    return
+def send_email(name, email, subject, body):
+    msg = Message(subject, sender=("Josephghanimah.com","jfghanimah@gmail.com"))
+    msg.recipients=["jfghanimah@gmail.com"]
+    msg.body = name + '\n' + email + '\n' + body
+    mail.send(msg)
 
 
 # Returns True or False depending on the google recaptcha api call
@@ -94,7 +67,7 @@ def verify_reCAPTCHA():
     recaptcha_response = request.form.get('g-recaptcha-response')
     url = 'https://www.google.com/recaptcha/api/siteverify'
     values = {
-        'secret': '6LdBZM8ZAAAAAPf-wUqbv4btign4HerBSqX4ZM7Q',
+        'secret': current_app.config['GOOGLE_RECAPTCHA_SECRET_KEY'],
         'response': recaptcha_response
     }
     data = urllib.parse.urlencode(values).encode()

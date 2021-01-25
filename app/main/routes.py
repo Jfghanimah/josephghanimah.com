@@ -39,13 +39,17 @@ def home():
     form = ContactForm()
     if form.validate_on_submit():
         if verify_reCAPTCHA():
-            name = form.name.data
-            email = form.email.data
-            subject = form.subject.data
-            body = form.message.data
-            send_email(name=name, subject=subject, email=email, body=body)
-            flash("Your message has been sent!", "green")
-            return redirect(url_for("main.home")) #This resets the page entirely 
+            form_answer = request.form['question']
+            if not (form_answer == "10" or form_answer.lower() == "ten"):
+                flash("Your response to the math question is wrong!", "red")
+            else:
+                name = form.name.data
+                email = form.email.data
+                subject = form.subject.data
+                body = form.message.data
+                send_email(name=name, subject=subject, email=email, body=body)
+                flash("Your message has been sent!", "green")
+                return redirect(url_for("main.home")) #This resets the page entirely 
         else:
             flash("Invalid reCAPTCHA. Please try again.", "red")
     

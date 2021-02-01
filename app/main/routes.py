@@ -47,7 +47,7 @@ def home():
                 email = form.email.data
                 subject = form.subject.data
                 body = form.message.data
-                send_email(name=name, subject=subject, email=email, body=body)
+                send_email(name=name, subject=subject, email=email, body=body, answer=form_answer)
                 flash("Your message has been sent!", "green")
                 return redirect(url_for("main.home")) #This resets the page entirely 
         else:
@@ -59,10 +59,10 @@ def home():
     return render_template("home.html", form=form)
 
 
-def send_email(name, email, subject, body):
+def send_email(name, email, subject, body, answer):
     msg = Message(subject, sender=("Josephghanimah.com","jfghanimah@gmail.com"))
     msg.recipients=["jfghanimah@gmail.com"]
-    msg.body = name + '\n' + email + '\n' + body
+    msg.body = f"Name: {name}\nEmail: {email}\nMessage: {body}\nAnswer: {answer}"
     mail.send(msg)
 
 

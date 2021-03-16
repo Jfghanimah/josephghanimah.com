@@ -1,6 +1,8 @@
 import urllib
 import json
 
+from datetime import datetime
+
 from flask import (Blueprint, render_template, redirect, flash ,
                    url_for, send_from_directory, request, current_app)
 
@@ -40,7 +42,9 @@ def home():
     if form.validate_on_submit():
         if verify_reCAPTCHA():
             form_answer = request.form['question']
-            if not (form_answer == "10" or form_answer.lower() == "ten"):
+            correct_answer = datetime.today().day
+            if not (form_answer == str(correct_answer)):
+                print(form_answer, correct_answer)
                 flash("Your response to the math question is wrong!", "red")
             else:
                 name = form.name.data

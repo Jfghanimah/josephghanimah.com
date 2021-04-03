@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-<head>
-    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
-</head>
-
 
 <style>
     .parallax_layer_back {
@@ -14,8 +10,6 @@
 
 <div class='container section center white-text'>
 
-        <h1 style="font-size:2000%">:(</h1>  
-        <h2 class="grey-text text-lighten-1">Error: <b class="cyan-text">{{code}}</b></h2>
         <video id="my-video"
         class="video-js"
         controls
@@ -24,7 +18,7 @@
         height="720"
         poster="static/images/not-today.jpg"
         data-setup="{}">
-        <source src="static/video/not-today.mp4" type="video/mp4" />
+        <source src="static/videos/not-today.mp4" type="video/mp4" />
         <p class="vjs-no-js">
           To view this video please enable JavaScript, and consider upgrading to a
           web browser that
@@ -33,8 +27,9 @@
       </video>
     
       <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
-        <a class="waves-effect waves-light btn cyan black-text" href="javascript:history.back()"> <h6><b>⯇ GO BACK</b></h6> </a>
-        <br><br><br>
+      <br>
+      <a class="waves-effect waves-light btn cyan black-text" href="javascript:history.back()"> <h6><b>⯇ GO BACK</b></h6> </a>
+      <br><br><br>
 
 </div>
 

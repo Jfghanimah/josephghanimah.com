@@ -63,6 +63,10 @@ def home():
     return render_template("home.html", form=form)
 
 
+@main.route("/video")
+def video():
+     return render_template("video.html")
+
 
 @main.route("/github")
 def redirect_github():

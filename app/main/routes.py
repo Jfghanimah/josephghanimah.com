@@ -63,6 +63,17 @@ def home():
     return render_template("home.html", form=form)
 
 
+
+@main.route("/github")
+def redirect_github():
+    return redirect("https://github.com/Jfghanimah")
+
+
+@main.route("/linkedin")
+def redirect_linkedin():
+    return redirect("https://www.linkedin.com/in/joseph-ghanimah/")
+
+
 def send_email(name, email, subject, body, answer):
     msg = Message(subject, sender=("Josephghanimah.com","jfghanimah@gmail.com"))
     msg.recipients=["jfghanimah@gmail.com"]
@@ -83,3 +94,7 @@ def verify_reCAPTCHA():
     response = urllib.request.urlopen(req)
     result = json.loads(response.read().decode())
     return result['success']
+
+
+
+

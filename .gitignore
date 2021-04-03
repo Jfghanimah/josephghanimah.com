@@ -4,6 +4,9 @@ __pycache__/
 # Environment
 venv/
 *.ini
+*.sock
 
 # VS Code
 .vscode/
+app/static/videos/not-today.mp4
+app/static/images/not-today.jpg

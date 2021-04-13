@@ -70,7 +70,6 @@ def video():
 
 @main.route("/github")
 def redirect_github():
-    context
     return redirect("https://github.com/Jfghanimah")
 
 

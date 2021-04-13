@@ -8,5 +8,4 @@ venv/
 
 # VS Code
 .vscode/
-app/static/videos/not-today.mp4
-app/static/images/not-today.jpg
+app/media/

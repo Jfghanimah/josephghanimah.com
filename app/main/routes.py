@@ -65,11 +65,12 @@ def home():
 
 @main.route("/video")
 def video():
-     return render_template("video.html")
+     return render_template("video.html", video_name="WHOS NEXT.mp4")
 
 
 @main.route("/github")
 def redirect_github():
+    context
     return redirect("https://github.com/Jfghanimah")
 
 

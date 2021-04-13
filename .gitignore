@@ -8,4 +8,4 @@ venv/
 
 # VS Code
 .vscode/
-app/media/
+app/static/media/

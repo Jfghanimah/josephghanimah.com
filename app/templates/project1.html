@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .parallax_layer_back {
+    height: 1200px !important;
+  }
+</style>
+
+
+<!-- Picture and Intro -->
+<div class="container center-align white-text fade-in">
+  <br><br>
+  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
+  <h1>Joseph F. Ghanimah</h1>
+  <br><br><br>
+</div>
+
+<!-- Project Slab -->
+<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+
+  <div class="section container">
+    <br id="bio">
+    <div class="row">
+
+      <h1 class="center-align">Lol Draft Analyzer</h1>
+      <br><br>
+      <p class="flow-text">
+        The lol draft analyzer is a machine learning model that is designed to predict the outcome of a fixed match
+        between two teams in the game League of Legends based on the champions that are drafted by each team. This model
+        is trained using data from past matches, and is designed to accurately predict the outcome of future matches
+        based on the champions that are selected. The lol draft analyzer can be a valuable tool for players and teams
+        looking to improve their strategy and performance in the game, as well as for analysts and commentators who want
+        to gain insight into the factors that can impact the outcome of a match.
+      </p> <br>
+
+      <p class="center-align">
+        <img  width="500px" style="border-radius:2%;" src="{{ url_for('static',filename='images/draft-api.png') }}">
+      </p> <br>
+
+      <p class="flow-text">
+        One of the key challenges in creating a model like the lol draft analyzer is the large number of champions that
+        are available in the game, and the complex interactions between them. Each champion has unique abilities and
+        strengths, and the way that they are used can significantly impact the outcome of a match. In order to
+        accurately predict the outcome of a match, the lol draft analyzer needs to be able to consider the full range of
+        potential champion combinations and their interactions.
+      </p> <br>
+      <p class="flow-text">
+        Despite these challenges, the lol draft analyzer has shown promising results in early testing, with an accuracy
+        of around 55% in predicting the outcome of matches. While this accuracy is still improving, it is a significant
+        achievement given the complexity of the problem and the relatively small amount of data that is available. As
+        the model continues to learn and improve, it is expected that the accuracy of its predictions will increase over
+        time. In addition to its potential value for players and teams, the lol draft analyzer could also be a valuable
+        resource for analysts and commentators looking to gain insights into the factors that can impact the outcome of
+        a match.
+      </p><br>
+
+    </div>
+
+  </div>
+</div>
+
+
+<br><br><br><br><br><br><br>
+
+{% endblock content %}

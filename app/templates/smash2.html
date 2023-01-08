@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .parallax_layer_back {
+        height: 1200px !important;
+    }
+</style>
+
+<div class='container section center white-text'>
+
+        <h2 class="grey-text text-lighten-4">Smash Bros. Rankings </h2>
+
+        {{ table|safe }}
+
+        <br><br>
+
+        <div class="container">
+            <form action="/smash2" method="POST">
+                <p>Winning Player: </p>
+                <select name='player1' id='player1'>
+                    {% for player in choices %}
+                        <option value="{{ loop.index }}">{{ loop.index }} {{ player["Name"] }} {{ player["Character"] }} {{ player["Rating"] }}</option>
+                    {% endfor %}
+                </select>
+    
+                <br>
+    
+                <p>Losing Player: </p>
+                <select name='player2' id='player2'>
+                    {% for player in choices %}
+                        <option value="{{ loop.index }}">{{ loop.index }} {{ player["Name"] }} {{ player["Character"] }} {{ player["Rating"] }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+    
+            <button class="btn waves-effect waves-light deep-purple darken-1" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+
+            </form>
+        </div>            
+
+</div>
+
+<br>
+
+{% endblock content %}

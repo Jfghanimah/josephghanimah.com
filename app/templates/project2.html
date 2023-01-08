@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .parallax_layer_back {
+    height: 1200px !important;
+  }
+</style>
+
+
+<!-- Picture and Intro -->
+<div class="container center-align white-text fade-in">
+  <br><br>
+  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
+  <h1>Joseph F. Ghanimah</h1>
+  <br><br><br>
+</div>
+
+<!-- Project Slab -->
+<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+
+  <div class="section container">
+    <br id="bio">
+    <div class="row">
+
+      <h1 class="center-align">DCGAN</h1>
+      <br><br>
+      <p class="flow-text">I created a Deep Convolutional Generative Adversarial Network (DCGAN) as a machine learning
+        project. A DCGAN is a type of model that is designed to generate synthetic images that are indistinguishable
+        from real ones. It does this using two neural networks that are trained simultaneously: a generator network and
+        a discriminator network.
+      </p><br>
+
+      <p class="center-align">
+        <img  width="500px" style="border-radius:2%;" src="{{ url_for('static',filename='images/dcgan.gif') }}">
+      </p> <br>
+      <p class="flow-text">I trained the generator network to create images that looked real, and the discriminator
+        network to distinguish real images from fake ones. As I trained the two networks together, the generator became
+        better at creating realistic images, and the discriminator became better at distinguishing real images from fake
+        ones.</p><br>
+      <p class="flow-text">I used my DCGAN for a variety of purposes, including image generation, data augmentation, and
+        style transfer. It was a powerful and versatile tool that allowed me to generate synthetic images of faces,
+        animals, landscapes, and more. The DCGAN was also an interesting example of a generative model, and inspired a
+        lot of research in the field of machine learning.</p><br>
+      <p class="flow-text">Overall, creating a Deep Convolutional Generative Adversarial Network was a fascinating and
+        rewarding project. It allowed me to explore the latest advances in machine learning, and to create something
+        that had the potential to have a significant impact in a wide range of applications.</p><br>
+
+
+      <br><br><br><br><br>
+
+    </div>
+
+  </div>
+</div>
+
+
+<br><br><br><br><br><br><br>
+
+{% endblock content %}

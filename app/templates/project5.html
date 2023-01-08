@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .parallax_layer_back {
+    height: 1200px !important;
+  }
+</style>
+
+
+<!-- Picture and Intro -->
+<div class="container center-align white-text fade-in">
+  <br><br>
+  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
+  <h1>Joseph F. Ghanimah</h1>
+  <br><br><br>
+</div>
+
+<!-- Project Slab -->
+<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+
+  <div class="section container">
+    <br id="bio">
+    <div class="row">
+
+      <h1 class="center-align">Social Weight Lifting App</h1>
+      <br><br>
+      <p class="flow-text">Our mobile app is designed specifically for intermediate lifters who are looking for an easy
+        and effective way to track and execute their lifting programs. With our app, users can easily input and track
+        their workouts, share their progress with other users, and receive personalized recommendations for their
+        training. Our app also includes features such as an in-app calculator and timers to assist with plate weights
+        and rest periods, making it a complete toolkit for intermediate lifters.</p><br>
+        
+      <p class="center-align">
+        <img  width="500px" style="border-radius:4%;" src="{{ url_for('static',filename='images/plate-calc.webp') }}">
+      </p> <br>
+        <p class="flow-text">To monetize the app, I plan to offer it for free and generate revenue through ad revenue from
+        users who are using the app for an entire gym session. This presents a significant monetization opportunity, as
+        users will be engaged with the app for a significant amount of time, providing ample opportunity for ad
+        impressions. However, I realize that building a high-quality, user-friendly app that meets the needs of our
+        target audience will require significant resources and expertise, and could be a daunting task for a small team
+        or startup. Additionally, ongoing maintenance and updates will be necessary to keep the app relevant and useful
+        to our users, and effective strategies for user acquisition and retention will need to be developed and
+        implemented.</p><br>
+      <p class="flow-text">To promote the app, I plan to pay fitness influencers to use and promote the product, run
+        paid advertising campaigns through social media or targeted websites, and create and share high-quality content
+        related to the app and the benefits it offers to intermediate lifters. However, I also recognize that the idea
+        of both a lifting toolkit and a social sphere in one app could potentially make the app very overloaded and
+        confusing to navigate. It will be important to carefully consider the balance between functionality and
+        usability to ensure that the app is easy for users to understand and use.</p>
+      <br><br><br><br><br>
+
+    </div>
+
+  </div>
+</div>
+
+
+<br><br><br><br><br><br><br>
+
+{% endblock content %}

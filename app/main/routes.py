@@ -1,6 +1,8 @@
 import urllib
 import json
 
+import pandas as pd
+import numpy as np
 from datetime import datetime
 
 from flask import (Blueprint, render_template, redirect, flash ,
@@ -9,6 +11,7 @@ from flask import (Blueprint, render_template, redirect, flash ,
 from flask_mail import Message
 
 from app.main.forms import ContactForm
+from app.main.rating import new_rating
 from app import mail
 
 main = Blueprint('main', __name__)
@@ -63,9 +66,101 @@ def home():
     return render_template("home.html", form=form)
 
 
+@main.route("/about")
+def about():
+    return render_template("about.html", title="About")    
+
+
+
+# Projects
+@main.route("/lol-draft")
+def lol_draft_project():
+    return render_template("project1.html", title="Lol Draft Analyzer")
+
+@main.route("/dcgan")
+def dcgan_project():
+    return render_template("project2.html", title="Deep Convolutional Generative Adversarial Network")
+
+@main.route("/snake-ai")
+def snake_ai_project():
+    return render_template("project3.html", title="Snake Game AI")
+
+@main.route("/rating")
+def rating_project():
+    return render_template("project4.html", title="Improved Glicko2 Rating System")
+
+@main.route("/lifting-app")
+def lifting_app_project():
+    return render_template("project5.html", title="Social Weight Lifting App")
+
+
 @main.route("/video")
 def video():
-     return render_template("video.html", video_name="WHOS-NEXT.mp4")
+    return render_template("video.html", video_name="EternalSunshine.mp4", caption_name="EternalSunshine.vtt", title="Video")
+
+
+@main.route("/smash")
+def smash():
+    ratings_df = pd.read_csv("elos.csv", index_col=0)
+    ratings_df = ratings_df.sort_values(by='Rating', ascending=False)
+    ratings_df.index = np.arange(1, len(ratings_df)+1)
+
+    return render_template("smash.html", table=ratings_df.to_html(), title="Smash Ranks")
+
+
+@main.route("/smash2",  methods=['GET', 'POST'])
+def smash2():
+    df = pd.read_csv("elos.csv", index_col=0)
+    df = df.sort_values(by='Rating', ascending=False)    
+    df.index = np.arange(1, len(df)+1)
+
+    print(df.head())
+
+    choices = []
+    for idx, row in df.iterrows():
+        choices.append(row)
+
+    if request.method == "POST":
+        p1 = int(request.form['player1'])
+        p2 = int(request.form['player2'])
+
+        if p1 == p2:
+            flash("You selected the same player twice!", "red")
+            return redirect(url_for("main.smash2"))
+        
+        r1 = df.loc[p1].Rating
+        c1 = df.loc[p1].Confidence
+        r2 = df.loc[p2].Rating
+        c2 = df.loc[p2].Confidence
+
+        p1_ratings = new_rating(r1, c1, r2, c2, 1)
+        p2_ratings = new_rating(r2, c2, r1, c1, 0)
+
+
+        # reassign new ratings
+
+        df.at[p1, 'Rating'] = p1_ratings[0]
+        df.at[p1, 'Confidence'] = p1_ratings[1]
+        df.at[p2, 'Rating'] = p2_ratings[0]
+        df.at[p2, 'Confidence'] = p2_ratings[1]
+
+        df.to_csv("elos.csv")
+
+        msg = f"""
+        Players Updated!
+        Winner: {r1} -> {p1_ratings[0]}
+        Loser: {r2} -> {p2_ratings[0]}
+        """
+
+        flash(msg, "green")        
+        return redirect(url_for("main.smash2"))
+
+    return render_template("smash2.html", table=df.to_html(), choices=choices)
+
+
+@main.route("/resume")
+def redirect_resume():
+    return redirect("https://josephghanimah.com/static/JosephResume.pdf")
 
 
 @main.route("/github")

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .parallax_layer_back {
+    height: 1200px !important;
+  }
+</style>
+
+
+<!-- Picture and Intro -->
+<div class="container center-align white-text fade-in">
+  <br><br>
+  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
+  <h1>Joseph F. Ghanimah</h1>
+  <br><br><br>
+</div>
+
+<!-- Project Slab -->
+<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+
+  <div class="section container">
+    <br id="bio">
+    <div class="row">
+
+      <h1 class="center-align">Snake AI</h1>
+      <br><br>
+      <p class="flow-text">In another somewhat machine learning related project, I decided to create a Snake Game AI. My
+        main objective
+        was to create an AI that could not only collect the apples (which is a common goal in Snake games), but also
+        complete the game by filling out the board. To do this, I explored a variety of different models and algorithms,
+        trying out different approaches and tweaking my parameters to see what worked best.
+      </p> <br>
+
+      <p class="center-align">
+        <img width="500px" style="border-radius:0%;" src="{{ url_for('static',filename='images/Snake-ai-video.gif') }}">
+      </p> <br>
+
+      <p class="flow-text">One of the challenges I faced in this project was finding a way to balance the trade-off
+        between exploration and exploitation. On the one hand, the Snake AI needed to explore the game board and try out
+        different strategies in order to find the most efficient path to completion. On the other hand, it also needed
+        to be able to exploit its knowledge of the game and make smart, calculated moves in order to maximize its
+        chances of success.
+      </p> <br>
+      <p class="flow-text">In the end, I was able to create a Snake Game AI that was able to complete the game with a
+        high degree of efficiency, but interestingly enough not better than I could do manually step by step. Overall
+        snake game requires a significant amount of foresight. It was a challenging and rewarding project that allowed
+        me to explore the latest
+        advances in machine learning and apply my skills to a fun and engaging problem.
+      </p> <br>
+      <br><br><br><br><br>
+
+    </div>
+
+  </div>
+</div>
+
+
+<br><br><br><br><br><br><br>
+
+{% endblock content %}

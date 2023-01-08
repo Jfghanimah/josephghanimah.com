@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  .parallax_layer_back {
+    height: 1200px !important;
+  }
+</style>
+
+
+<!-- Picture and Intro -->
+<div class="container center-align white-text fade-in">
+  <br><br>
+  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
+  <h1>Joseph F. Ghanimah</h1>
+  <br><br><br>
+</div>
+
+<!-- Project Slab -->
+<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+
+  <div class="section container">
+    <!-- About Me Section-->
+    <br id="bio">
+    <div class="row">
+
+      <h1 class="center-align">About Me</h1>
+      <br><br>
+      <p class="flow-text">
+        Hello! My name is Joseph Ghanimah, and I am a Senior at The University of Illinois at Urbana-Champaign, majoring
+        in Computer Engineering with minors in Mathematical Statistics and Data Science. I have a strong background in
+        machine learning and data science, and I am skilled in tools such as Python, Flask, Django,
+        C++, and TensorFlow.
+      </p>
+      <br>
+      <p class="flow-text">
+        One of my main professional aspirations is to push society toward more extensive usage of data in almost every
+        industry. I believe that there is so much untapped potential in data, and I am passionate about finding ways to
+        apply it to solve problems and drive innovation.
+      </p>
+      <br>
+      <p class="flow-text">
+        In terms of my skills and abilities, I am exceptionally adaptable and have strong critical and lateral thinking
+        skills. I am also known for my unusually broad knowledge, and my family and peers have referred to me as a
+        "walking encyclopedia."
+      </p>
+      <br>
+      <p class="flow-text">
+        I am proud to have created my entire personal website from scratch using a Linux-based virtual machine hosted on
+        a DigitalOcean,
+        demonstrating my technical skills and attention to detail. I have also received several academic awards and
+        honors, and have completed a number of relevant coursework and projects in my field.
+      </p>
+      <br>
+      <p class="flow-text">
+        Outside of my professional pursuits, I enjoy gaming, particularly competitive games and strategy games like
+        chess. I also enjoy lifting weights at the gym and staying up-to-date with the latest technology and trends. I
+        am a fan of film and enjoy watching and analyzing movies in my free time.
+      </p>
+      <br>
+      <p class="flow-text">
+        In the workplace, I am focused on staying informed and constantly improving my work. I am capable of focusing on
+        tasks delegated to me, but I also have a keen interest in other tasks that may not be directly related to my
+        current assignment. I believe that this open-mindedness and adaptability allows me to bring new ideas and
+        perspectives to the table, and I am excited to contribute to a dynamic and collaborative team environment.
+      </p>
+      <br>
+      <p class="flow-text">
+        Thank you for visiting my personal website. I hope you have learned a little bit more about me and my
+        professional and personal interests. Please feel free to reach out if you have any questions or would like to
+        connect!
+      </p>
+      <br><br><br><br><br>
+
+    </div>
+
+  </div>
+</div>
+
+
+<br><br><br><br><br><br><br>
+
+{% endblock content %}

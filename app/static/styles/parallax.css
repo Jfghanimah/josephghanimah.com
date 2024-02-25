@@ -17,7 +17,7 @@
 
 
 .parallax_layer_back {
-    transform: translateZ(-10px) scale(11.1);
+    transform: translateZ(-10px) scale(12);
     background: url("../images/texture2.png") repeat, linear-gradient(345deg, rgb(3, 99, 155)20% , rgb(179, 28, 143)80%);
     height: 1780px;
 }

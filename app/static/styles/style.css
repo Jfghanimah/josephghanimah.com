@@ -15,6 +15,10 @@ body {
   /*background: url("../images/texture.png") repeat, linear-gradient(347deg, rgb(1, 114, 206) , rgb(167, 41, 137));*/ /* Moved to parallax.css */
 }
 
+strong {
+  font-weight: 700;
+}
+
 .fade-in {
   animation: fadeIn linear 1.5s;
   animation-fill-mode: forwards;  

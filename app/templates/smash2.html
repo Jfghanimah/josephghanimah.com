@@ -20,7 +20,7 @@
                 <p>Winning Player: </p>
                 <select name='player1' id='player1'>
                     {% for player in choices %}
-                        <option value="{{ loop.index }}">{{ loop.index }} {{ player["Name"] }} {{ player["Character"] }} {{ player["Rating"] }}</option>
+                        <option value="{{ loop.index }}">{{ player["Name"] }} {{ player["Character"] }} {{ player["Rating"] }}</option>
                     {% endfor %}
                 </select>
     
@@ -29,7 +29,7 @@
                 <p>Losing Player: </p>
                 <select name='player2' id='player2'>
                     {% for player in choices %}
-                        <option value="{{ loop.index }}">{{ loop.index }} {{ player["Name"] }} {{ player["Character"] }} {{ player["Rating"] }}</option>
+                        <option value="{{ loop.index }}">{{ player["Name"] }} {{ player["Character"] }} {{ player["Rating"] }}</option>
                     {% endfor %}
                 </select>
                 <br><br>

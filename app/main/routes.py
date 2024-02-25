@@ -68,7 +68,7 @@ def home():
 
 @main.route("/about")
 def about():
-    return render_template("about.html", title="About")    
+    return render_template("about.html", title="About")
 
 
 
@@ -113,8 +113,10 @@ def smash2():
     df = pd.read_csv("elos.csv", index_col=0)
     df = df.sort_values(by='Rating', ascending=False)    
     df.index = np.arange(1, len(df)+1)
+    table = df.to_html() 
 
-    print(df.head())
+    df = df.sort_values(by=['Name', 'Rating'], ascending=[True, False])   
+    df.index = np.arange(1, len(df)+1)
 
     choices = []
     for idx, row in df.iterrows():
@@ -136,9 +138,7 @@ def smash2():
         p1_ratings = new_rating(r1, c1, r2, c2, 1)
         p2_ratings = new_rating(r2, c2, r1, c1, 0)
 
-
         # reassign new ratings
-
         df.at[p1, 'Rating'] = p1_ratings[0]
         df.at[p1, 'Confidence'] = p1_ratings[1]
         df.at[p2, 'Rating'] = p2_ratings[0]
@@ -147,15 +147,15 @@ def smash2():
         df.to_csv("elos.csv")
 
         msg = f"""
-        Players Updated!
-        Winner: {r1} -> {p1_ratings[0]}
-        Loser: {r2} -> {p2_ratings[0]}
+        Updated!
+        Winner: {df.loc[p1].Name}: {p1_ratings[0]-r1}
+        Loser: {df.loc[p2].Name}: {p2_ratings[0]-r2}
         """
 
         flash(msg, "green")        
         return redirect(url_for("main.smash2"))
 
-    return render_template("smash2.html", table=df.to_html(), choices=choices)
+    return render_template("smash2.html", table=table, choices=choices)
 
 
 @main.route("/resume")

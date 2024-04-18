@@ -22,7 +22,7 @@
   <nav>
     <div class="center">
       <ul style = "display:flex; justify-content:center;">
-        <li class="top"><a href="#goal" style="font-size: calc(1.3vw + 7px);">Mission</a></li>
+        <li class="top"><a href="#mission" style="font-size: calc(1.3vw + 7px);">Mission</a></li>
         <li class="top"><a href="#webdev" style="font-size: calc(1.3vw + 7px);">Web Dev</a></li>
         <li class="top"><a href="#ml" style="font-size: calc(1.3vw + 7px);">ML</a></li>
         <li class="top"><a href="#miscproj" style="font-size: calc(1.3vw + 7px);">Misc.</a></li>
@@ -252,92 +252,6 @@
   </div>
 </div>
 
-<br><br><br id="contact"><br><br><br><br><br>
-<!-- Contact me section -->
-<div class="container">
-  <h3 class="center-align white-text">Contact me</h3>
-  <div class="row">
-
-
-
-    <form class="col s8 offset-s2" method="post" action="/">
-      {{ form.csrf_token }}
-
-      <div class="row">
-        <div class="input-field col s6">
-          {{ form.name(class = "validate")}}
-          {{ form.name.label(class = "")}}
-
-          {% if form.name.errors %}
-          {% for error in form.name.errors %}
-          <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
-          {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s6">
-          {{ form.email(class = "")}}
-          {{ form.email.label(class = "")}}
-
-          {% if form.email.errors %}
-          {% for error in form.email.errors %}
-          <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
-          {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s6">
-          {{ form.subject(class = "validate")}}
-          {{ form.subject.label(class = "")}}
-
-          {% if form.subject.errors %}
-          {% for error in form.subject.errors %}
-          <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
-          {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          {{ form.message(class = "materialize-textarea")}}
-          {{ form.message.label(class = "")}}
-
-          {% if form.message.errors %}
-          {% for error in form.message.errors %}
-          <span class="helper-text left-align red-text" data-error="" data-success="">{{error}}</span>
-          {% endfor %}
-          {% endif %}
-        </div>
-      </div>
-
-      <!-- Extra Question to stop reCaptcha bots idk how else to stop-->
-      <div class="row">
-        <div class="input-field col s6">
-          <label for="question">What day of the month is it?</label>
-          <input type="text" id="question" name="question">
-
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="g-recaptcha" data-sitekey="6LdBZM8ZAAAAAJUPpxQqcZFOQ0pk4MFetp4untjU"></div>
-        <br />
-        <button class="btn waves-effect waves-light cyan" type="submit" name="action">Submit
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-
-    </form>
-
-
-
-  </div>
-</div>
 <br><br><br><br><br><br><br>
 
 {% endblock content %}

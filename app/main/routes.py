@@ -5,8 +5,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime
 
-from flask import (Blueprint, render_template, redirect, flash ,
-                   url_for, send_from_directory, request, current_app)
+from flask import (Blueprint, render_template, redirect, flash , url_for, send_from_directory, request, current_app)
 
 from flask_mail import Message
 
@@ -39,31 +38,9 @@ def redirect_home():
     return redirect(url_for('main.home'))
 
 
-@main.route("/", methods=['GET', 'POST'])
-def home():
-    form = ContactForm()
-    if form.validate_on_submit():
-        if verify_reCAPTCHA():
-            form_answer = request.form['question']
-            correct_answer = datetime.today().day
-            if not (form_answer == str(correct_answer)):
-                print(form_answer, correct_answer)
-                flash("Your response to the math question is wrong!", "red")
-            else:
-                name = form.name.data
-                email = form.email.data
-                subject = form.subject.data
-                body = form.message.data
-                send_email(name=name, subject=subject, email=email, body=body, answer=form_answer)
-                flash("Your message has been sent!", "green")
-                return redirect(url_for("main.home")) #This resets the page entirely 
-        else:
-            flash("Invalid reCAPTCHA. Please try again.", "red")
-    
-    if form.email.errors:
-        flash(f"There was an error with your information: {', '.join(form.email.errors)}", "red")
-    
-    return render_template("home.html", form=form)
+@main.route("/")
+def home():    
+    return render_template("home.html")
 
 
 @main.route("/about")
@@ -97,6 +74,12 @@ def lifting_app_project():
 @main.route("/video")
 def video():
     return render_template("video.html", video_name="EternalSunshine.mp4", caption_name="EternalSunshine.vtt", title="Video")
+
+
+
+@main.route("/cog-test")
+def cog_test():
+    return render_template("cog_test.html", title="Cognitive Test")
 
 
 @main.route("/smash")
@@ -173,6 +156,31 @@ def redirect_linkedin():
     return redirect("https://www.linkedin.com/in/joseph-ghanimah/")
 
 
+
+
+
+@main.route("/contact", methods=['GET', 'POST'])
+def contact():
+    form = ContactForm()
+    recaptcha_response = request.form.get('g-recaptcha-response')
+    if form.validate_on_submit():
+        if verify_reCAPTCHA(recaptcha_response):
+                name = form.name.data
+                email = form.email.data
+                subject = form.subject.data
+                body = form.message.data
+                send_email(name=name, subject=subject, email=email, body=body)
+                flash("Your message has been sent!", "green")
+                return redirect(url_for("main.home")) #This resets the page entirely 
+        else:
+            flash("Invalid reCAPTCHA. Please try again.", "red")
+    
+    if form.email.errors:
+        flash(f"There was an error with your information: {', '.join(form.email.errors)}", "red")
+
+    return render_template("contact.html", form=form)
+
+
 def send_email(name, email, subject, body, answer):
     msg = Message(subject, sender=("Josephghanimah.com","jfghanimah@gmail.com"))
     msg.recipients=["jfghanimah@gmail.com"]
@@ -181,8 +189,7 @@ def send_email(name, email, subject, body, answer):
 
 
 # Returns True or False depending on the google recaptcha api call
-def verify_reCAPTCHA():
-    recaptcha_response = request.form.get('g-recaptcha-response')
+def verify_reCAPTCHA(recaptcha_response):
     url = 'https://www.google.com/recaptcha/api/siteverify'
     values = {
         'secret': current_app.config['GOOGLE_RECAPTCHA_SECRET_KEY'],

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="contact-form">
+        <h1>Contact Me</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="post">
+            {{ form.hidden_tag() }}
+            {{ form.name.label }} {{ form.name(size=32) }}
+            {{ form.email.label }} {{ form.email(size=32) }}
+            {{ form.subject.label }} {{ form.subject(size=32) }}
+            {{ form.message.label }} {{ form.message(rows=4) }}
+            {{ form.question.label }} {{ form.question(size=32) }}
+            <input type="submit" value="Submit">
+        </form>
+        
+        <div class="row">
+            <div class="g-recaptcha" data-sitekey="6LdBZM8ZAAAAAJUPpxQqcZFOQ0pk4MFetp4untjU"></div>
+            <br />
+            <button class="btn waves-effect waves-light cyan" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+{% endblock content %}

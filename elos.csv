@@ -1,24 +1,30 @@
 ,Name,Character,Rating,Confidence
-1,Abe,Captain Falcon,1680,126
-2,Abe,Ganondorf,1676,113
-3,Abe,Serphiroth,1651,180
-4,CPU1,Kazuya,766,98
-5,CPU3,Kazuya,1040,84
-6,CPU5,Kazuya,1189,75
-7,CPU7,Kazuya,1307,79
-8,CPU8,Kazuya,1560,68
-9,CPU9,Kazuya,1760,68
-10,CPU9,Byleth,1673,74
-11,CPU9,Mythra/Pyra,1479,70
-12,CPU9,Lucina,1457,72
-13,Joey,Mythra/Pyra,1888,69
-14,Joey,Cloud,1726,84
-15,Joey,Captain Falcon,1710,74
-16,Joey,ZSS,1621,225
-17,Kevin,Sheik,1618,123
-18,Milky,Kazuya,1783,116
-19,Milky,Ike,1643,234
-20,Milky,Pikachu,1578,146
-21,Travis,Sora,1428,131
-22,Travis,Lucina,1382,141
-23,Travis,Mythra/Pyra,1334,133
+1,Abe,Yoshi,1747,149
+2,Abe,Captain Falcon,1603,111
+3,Abe,Ganondorf,1602,105
+4,Abe,Serphiroth,1570,165
+5,Abe,Sheik,1416,217
+6,Abe,Incineroar,1393,218
+7,CPU1,Kazuya,766,98
+8,CPU3,Kazuya,1040,84
+9,CPU5,Kazuya,1189,76
+10,CPU7,Kazuya,1306,79
+11,CPU8,Kazuya,1558,68
+12,CPU9,Kazuya,1780,68
+13,CPU9,Byleth,1655,73
+14,CPU9,Mythra/Pyra,1479,70
+15,CPU9,Lucina,1457,72
+16,JT,Ganondorf,2003,92
+17,JT,Shulk,1872,135
+18,JT,Hero,1826,142
+19,Joey,Mythra/Pyra,1841,68
+20,Joey,Captain Falcon,1710,74
+21,Joey,Cloud,1689,81
+22,Joey,ZSS,1621,225
+23,Kevin,Sheik,1618,123
+24,Milky,Kazuya,1672,91
+25,Milky,Ike,1643,234
+26,Milky,Pikachu,1566,142
+27,Travis,Sora,1428,131
+28,Travis,Lucina,1382,141
+29,Travis,Mythra/Pyra,1334,133

@@ -1,6 +1,7 @@
 @import "scrollbar.css";
 @import "parallax.css";
 
+/* Reset and defaults */
 * {
   margin: 0;
   padding: 0;
@@ -12,13 +13,14 @@ body {
   font-weight: 300;
   min-height: 100vh;
   flex-direction: column;
-  /*background: url("../images/texture.png") repeat, linear-gradient(347deg, rgb(1, 114, 206) , rgb(167, 41, 137));*/ /* Moved to parallax.css */
+  /* The background is managed by the parallax effect in parallax.css */
 }
 
 strong {
   font-weight: 700;
 }
 
+/* Animation */
 .fade-in {
   animation: fadeIn linear 1.5s;
   animation-fill-mode: forwards;  
@@ -28,78 +30,119 @@ strong {
   to    {opacity: 1;}
 }
 
+/* Transparency classes */
 .transparent-1 {
   background-color: rgba(10, 10, 15, 0.700)
 }
 
+/* Image positioning */
 img {
   position: relative;
 }
 
+/* Navbar customization */
 nav {
-  background-color: rgb(10, 10, 10, 0.8);
+  background-color: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(5px);
   z-index: 100;
   position: sticky;
   top: 0;
-  
 }
 
+/* Sticky section below navbar, if applicable */
 #slab {
-  background-color: rgb(20, 20, 20, 0.85);  
+  background-color: rgba(20, 20, 20, 0.85);  
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
 }
 
-
+/* Navigation item hover effect */
 li.top:hover, li.top:hover{
   background-color: rgba(50, 241, 255, 0.4);
   transition-duration: 0.35s;
 }
 
+/* Active navigation link style */
 li.top a.active {
-  background-color: rgb(100, 0, 150, 0.70);
+  background-color: rgba(100, 0, 150, 0.70);
   transition-duration: 1s;
 }
 
+/* Input fields color */
 .input-field [type=text], textarea, .character-counter{
   color: #ffffff !important;
 }
 
-/* Icon color on hover*/
+/* Icon color on hover */
 .hov:hover {
   color: rgb(227, 185, 255);
 }
 
-/*Text color on hover*/
-.tabs .tab a.active {
-  background-color: #888 !important;
-  color: #000 !important;
-}
+/* Bootstrap Tabs Active State */
+/* Check Bootstrap tab styles and adjust if necessary. 
+Bootstrap uses 'nav' and 'nav-item' classes for tabs. */
 
-/*Background and text color when a tab is active*/
-.tabs .indicator {
-  background-color: #000 !important;
-}
+/* Icon Blocks */
+/* Check against Bootstrap's card and media object components for conflicts. */
 
-/*Color of underline*/
-a.disabled {
-  color: grey;
-}
-
-.icon-block {
-  padding: 0 15px;
-}
-
-.icon-block .material-icons {
-  font-size: inherit;
-}
-
+/* Material Icons Alignment */
 .material-icons {
   vertical-align: middle;
 }
 
+/* Footer customization to match the original style */
 .page-footer {
   background-color: rgb(25, 25, 25) !important;
+}
+
+/* Custom styles for Bootstrap components */
+/* It's important to review and ensure compatibility with Bootstrap styles. 
+For example, Bootstrap uses '.nav-link' instead of 'li.top' for navigation links. */
+
+/* Additional customizations and compatibility checks */
+/* ... Add other styles as needed and ensure they do not conflict with Bootstrap ... */
+
+/* Unsure how to convert comments are placed where Bootstrap may have different classes or conflicting styles. 
+It's important to review each section and adjust as needed based on Bootstrap's documentation. */
+
+
+
+/* Header and Navbar Styles */
+.navbar {
+  background-color: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  background-color: rgba(50, 241, 255, 0.4);
+  transition-duration: 0.35s;
+}
+
+.navbar-dark .navbar-nav .nav-item.active .nav-link {
+  background-color: rgba(100, 0, 150, 0.70);
+  transition-duration: 1s;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: rgb(25, 25, 25);
+  color: #ffffff;
+}
+
+.footer a {
+  color: #ffffff;
+}
+
+.footer a:hover {
+  color: rgb(227, 185, 255);
+  text-decoration: none;
+}
+
+.footer-bottom {
+  background-color: rgba(0, 0, 0, 0.2);
 }

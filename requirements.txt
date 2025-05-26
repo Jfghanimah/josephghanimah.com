@@ -1,4 +1,4 @@
-﻿dnspython==2.0.0
+﻿dnspython==2.6.1
 email-validator==1.1.1
 Flask==3.0.2
 Flask-Mail==0.9.1

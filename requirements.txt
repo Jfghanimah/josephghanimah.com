@@ -1,11 +1,7 @@
 ﻿dnspython==2.6.1
-email-validator==1.1.1
-Flask==3.0.2
-Flask-Mail==0.9.1
-Flask-WTF==0.14.3
+Flask==3.1.1
 idna==3.7
 Jinja2==3.1.6
 python-decouple==3.3
-WTForms==2.3.3
-uWSGI==2.0.25.1
+#uWSGI==2.0.25.1 #not needed for local testing
 pandas==2.2.2

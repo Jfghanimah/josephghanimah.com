@@ -7,11 +7,7 @@ from datetime import datetime
 
 from flask import (Blueprint, render_template, redirect, flash , url_for, send_from_directory, request, current_app)
 
-from flask_mail import Message
-
-from app.main.forms import ContactForm
 from app.main.rating import new_rating
-from app import mail
 
 main = Blueprint('main', __name__)
 
@@ -149,53 +145,4 @@ def redirect_github():
 @main.route("/linkedin")
 def redirect_linkedin():
     return redirect("https://www.linkedin.com/in/joseph-ghanimah/")
-
-
-
-
-
-@main.route("/contact", methods=['GET', 'POST'])
-def contact():
-    form = ContactForm()
-    recaptcha_response = request.form.get('g-recaptcha-response')
-    if form.validate_on_submit():
-        if verify_reCAPTCHA(recaptcha_response):
-                name = form.name.data
-                email = form.email.data
-                subject = form.subject.data
-                body = form.message.data
-                send_email(name=name, subject=subject, email=email, body=body)
-                flash("Your message has been sent!", "green")
-                return redirect(url_for("main.home")) #This resets the page entirely 
-        else:
-            flash("Invalid reCAPTCHA. Please try again.", "red")
-    
-    if form.email.errors:
-        flash(f"There was an error with your information: {', '.join(form.email.errors)}", "red")
-
-    return render_template("contact.html", form=form)
-
-
-def send_email(name, email, subject, body, answer):
-    msg = Message(subject, sender=("Josephghanimah.com","jfghanimah@gmail.com"))
-    msg.recipients=["jfghanimah@gmail.com"]
-    msg.body = f"Name: {name}\nEmail: {email}\nMessage: {body}\nAnswer: {answer}"
-    mail.send(msg)
-
-
-# Returns True or False depending on the google recaptcha api call
-def verify_reCAPTCHA(recaptcha_response):
-    url = 'https://www.google.com/recaptcha/api/siteverify'
-    values = {
-        'secret': current_app.config['GOOGLE_RECAPTCHA_SECRET_KEY'],
-        'response': recaptcha_response
-    }
-    data = urllib.parse.urlencode(values).encode()
-    req =  urllib.request.Request(url, data=data)
-    response = urllib.request.urlopen(req)
-    result = json.loads(response.read().decode())
-    return result['success']
-
-
-
 

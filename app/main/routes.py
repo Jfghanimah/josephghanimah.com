@@ -77,11 +77,6 @@ def video():
 
 
 
-@main.route("/cog-test")
-def cog_test():
-    return render_template("cog_test.html", title="Cognitive Test")
-
-
 @main.route("/smash")
 def smash():
     ratings_df = pd.read_csv("elos.csv", index_col=0)

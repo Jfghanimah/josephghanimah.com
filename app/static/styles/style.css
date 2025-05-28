@@ -12,8 +12,10 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
   min-height: 100vh;
+  display: flex; /* Added display:flex to make footer stick to bottom in base_bootstrap.html with flex-column on body */
   flex-direction: column;
   /* The background is managed by the parallax effect in parallax.css */
+  color: #f8f9fa; /* Default light text color for body content against dark parallax */
 }
 
 strong {
@@ -32,94 +34,32 @@ strong {
 
 /* Transparency classes */
 .transparent-1 {
-  background-color: rgba(10, 10, 15, 0.700)
+  background-color: rgba(10, 10, 15, 0.700) !important; /* Added !important */
+  color: #ffffff; /* Ensure text is white */
 }
 
 /* Image positioning */
 img {
-  position: relative;
+  position: relative; /* This can sometimes cause issues with Bootstrap layouts if not needed. Review if layout problems occur. */
 }
 
-/* Navbar customization */
-nav {
-  background-color: rgba(10, 10, 10, 0.8);
+/* --- Main Bootstrap Navbar Customization --- */
+.navbar { /* Be specific for the main fixed navbar */
+  background-color: rgba(10, 10, 10, 0.8) !important; /* Ensure override if Bootstrap has other bg */
   backdrop-filter: blur(5px);
-  z-index: 100;
-  position: sticky;
-  top: 0;
-}
-
-/* Sticky section below navbar, if applicable */
-#slab {
-  background-color: rgba(20, 20, 20, 0.85);  
-  backdrop-filter: blur(10px);
-  position: sticky;
-  top: 0;
-}
-
-/* Navigation item hover effect */
-li.top:hover, li.top:hover{
-  background-color: rgba(50, 241, 255, 0.4);
-  transition-duration: 0.35s;
-}
-
-/* Active navigation link style */
-li.top a.active {
-  background-color: rgba(100, 0, 150, 0.70);
-  transition-duration: 1s;
-}
-
-/* Input fields color */
-.input-field [type=text], textarea, .character-counter{
-  color: #ffffff !important;
-}
-
-/* Icon color on hover */
-.hov:hover {
-  color: rgb(227, 185, 255);
-}
-
-/* Bootstrap Tabs Active State */
-/* Check Bootstrap tab styles and adjust if necessary. 
-Bootstrap uses 'nav' and 'nav-item' classes for tabs. */
-
-/* Icon Blocks */
-/* Check against Bootstrap's card and media object components for conflicts. */
-
-/* Material Icons Alignment */
-.material-icons {
-  vertical-align: middle;
-}
-
-/* Footer customization to match the original style */
-.page-footer {
-  background-color: rgb(25, 25, 25) !important;
-}
-
-/* Custom styles for Bootstrap components */
-/* It's important to review and ensure compatibility with Bootstrap styles. 
-For example, Bootstrap uses '.nav-link' instead of 'li.top' for navigation links. */
-
-/* Additional customizations and compatibility checks */
-/* ... Add other styles as needed and ensure they do not conflict with Bootstrap ... */
-
-/* Unsure how to convert comments are placed where Bootstrap may have different classes or conflicting styles. 
-It's important to review each section and adjust as needed based on Bootstrap's documentation. */
-
-
-
-/* Header and Navbar Styles */
-.navbar {
-  background-color: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(5px);
+  /* z-index is typically handled well by Bootstrap's fixed-top (1030), ensure this doesn't conflict */
 }
 
 .navbar-dark .navbar-nav .nav-link {
   color: #ffffff;
+  padding-left: 1rem; /* Adding some padding for better spacing */
+  padding-right: 1rem;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus { /* Added :focus state */
   background-color: rgba(50, 241, 255, 0.4);
+  color: #ffffff; /* Ensure text color remains white or desired color on hover */
   transition-duration: 0.35s;
 }
 
@@ -127,22 +67,148 @@ It's important to review each section and adjust as needed based on Bootstrap's 
   background-color: rgba(100, 0, 150, 0.70);
   transition-duration: 1s;
 }
+/* --- End Main Bootstrap Navbar Customization --- */
 
-/* Footer Styles */
-.footer {
-  background-color: rgb(25, 25, 25);
+
+/* --- #SLAB - Secondary Sticky Navigation / Content Area --- */
+#slab {
+  background-color: rgba(20, 20, 20, 0.85);  /* Dark, semi-transparent black */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  position: sticky;
+  /* IMPORTANT: Set 'top' to the actual height of your main .navbar.fixed-top */
+  /* Example: If your main navbar is 56px tall, use top: 56px; */
+  /* Measure your main navbar's height in browser dev tools */
+  top: 56px; /* <<<<<<< ADJUST THIS VALUE! */
+  z-index: 99; /* Below main navbar (Bootstrap fixed-top is usually 1030) */
+  color: #ffffff; /* Default text color inside #slab */
+  /* py-4 (padding top and bottom) is applied via Bootstrap class in HTML */
+}
+
+/* Styling for nav links within #slab */
+#slab .nav .nav-link { /* Target Bootstrap nav links within #slab */
+  color: #f8f9fa; /* Light grey/white */
+  font-weight: 500; /* Slightly bolder */
+}
+#slab .nav .nav-link:hover,
+#slab .nav .nav-link:focus {
+  color: #ffffff; /* Brighter white on hover/focus */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background highlight */
+}
+/* --- End #SLAB --- */
+
+
+/* --- Custom Translucent Cards (Optional - use .custom-translucent-card class in HTML) --- */
+.custom-translucent-card {
+  background-color: rgba(35, 35, 40, 0.75); /* Darker, slightly more opaque card background */
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* More subtle border */
   color: #ffffff;
+  display: flex; /* Added for consistent flex behavior if not using d-flex on card itself */
+  flex-direction: column; /* Added for consistent flex behavior */
+}
+
+.custom-translucent-card .card-img-overlay .card-title {
+    /* Uses .transparent-1 class for its specific background */
+    color: #ffffff;
+}
+
+.custom-translucent-card .card-body {
+  color: #f0f0f0; /* Slightly off-white for card body text for subtle differentiation */
+  flex-grow: 1; /* Allows card body to grow and push footer to bottom */
+  display: flex;
+  flex-direction: column;
+}
+.custom-translucent-card .card-text.small { /* For the date text */
+  color: #0dcaf0 !important; /* Bootstrap's info color, using emphasis if available or !important */
+}
+.custom-translucent-card .card-text .material-icons {
+   color: #0dcaf0; /* Bootstrap's info color */
+   font-size: 1.1em; /* Slightly larger icon */
+   vertical-align: text-bottom;
+}
+
+/* Ensure buttons inside these cards are styled correctly */
+.custom-translucent-card .btn-outline-info {
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+.custom-translucent-card .btn-outline-info:hover {
+    color: #000; /* Or a contrasting light color like #fff */
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+.custom-translucent-card .card-body .mt-auto { /* To push button to bottom of card */
+    margin-top: auto !important;
+}
+/* --- End Custom Translucent Cards --- */
+
+
+/* --- General Input/Form Styling (Review for Bootstrap context) --- */
+/* These were for Materialize. Bootstrap forms are styled differently. */
+/*
+.input-field [type=text], textarea, .character-counter{
+  color: #ffffff !important;
+}
+*/
+/* If you need to style Bootstrap form controls on dark backgrounds: */
+.form-control {
+    /* Example: for contact form if it's on a dark bg and inputs are hard to see */
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    /* color: #ffffff; */
+    /* border: 1px solid rgba(255, 255, 255, 0.3); */
+}
+.form-control::placeholder {
+    /* color: rgba(255, 255, 255, 0.7); */
+}
+label {
+    /* color: #ffffff; */ /* If labels are on dark backgrounds */
+}
+
+
+/* Icon color on hover (general utility if used) */
+.hov:hover {
+  color: rgb(227, 185, 255);
+}
+
+/* Material Icons Alignment (if still used) */
+.material-icons {
+  vertical-align: middle;
+}
+
+
+/* --- Footer Styles --- */
+/* Targets <footer class="footer ..."> from base_bootstrap.html */
+.footer {
+  background-color: rgb(25, 25, 25) !important; /* Original style, ensure it applies */
+  color: #ffffff;
+  padding-top: 1.5rem; /* Added some padding */
+  padding-bottom: 0.5rem;
 }
 
 .footer a {
-  color: #ffffff;
+  color: #adb5bd; /* Lighter grey for links */
+  text-decoration: none; /* Bootstrap 5 removes underlines by default on links */
 }
 
-.footer a:hover {
-  color: rgb(227, 185, 255);
-  text-decoration: none;
+.footer a:hover,
+.footer a:focus {
+  color: rgb(227, 185, 255); /* Your original hover color */
+  text-decoration: underline; /* Add underline on hover for clarity */
 }
 
+/* Targets <div class="footer-bottom ..."> from base_bootstrap.html */
 .footer-bottom {
   background-color: rgba(0, 0, 0, 0.2);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
+
+/* Styles for specific Bootstrap components (if needed beyond Bootstrap defaults) */
+/* ... */
+
+/* Remove Old Materialize-specific styles that are no longer applicable */
+/*
+li.top:hover, li.top:hover { ... }
+li.top a.active { ... }
+.page-footer { ... }  -- Already handled by .footer
+*/

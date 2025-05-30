@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark"> <!-- Set dark theme for Bootstrap -->
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Removed maximum-scale=1.0 -->
-  <meta name="theme-color" content="#7952b3" /> <!-- Example Bootstrap 5 purple -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#212529" /> <!-- Dark theme color -->
   <meta name="description" content="My personal website." />
 
   <title>Joseph Ghanimah</title>
@@ -29,15 +29,12 @@
   
   <!-- Font Awesome for icons (Updated to v6.x) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <!-- Or Google Material Symbols (if preferred over Font Awesome/old Material Icons) -->
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
-
 
   <!-- Project Custom CSS (load AFTER Bootstrap) -->
   <!-- These imports are inside style.css, so only style.css needs to be linked -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
   
-  <!-- Global site tag (gtag.js) - Google Analytics (No changes here) -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115374634-3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -47,40 +44,31 @@
   </script>
 
   <style>
-    /* Minimal critical CSS for body font and parallax interaction, if needed */
     body {
       font-family: 'Source Sans Pro', sans-serif;
-      font-weight: 300; /* Default font weight */
+      font-weight: 300;
     }
-    /* Example for Google Material Symbols if you choose to use them */
-    /*
-    .material-symbols-outlined {
-        vertical-align: text-bottom; 
-    }
-    */
   </style>
 
 </head>
 
-<body class="d-flex flex-column min-vh-100"> <!-- For sticky footer -->
+<body class="d-flex flex-column min-vh-100">
   <div class="parallax_group">
     <div class="parallax_layer parallax_layer_back"></div>
-    <div class="parallax_layer parallax_layer_front d-flex flex-column flex-grow-1"> <!-- For sticky footer and parallax -->
+    <div class="parallax_layer parallax_layer_front d-flex flex-column flex-grow-1">
       
       <header>
-        <!-- Main Navbar - NOT fixed-top for Scenario B -->
-        <!-- Inline styles for background/blur can be moved to style.css if preferred -->
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(10,10,10,0.8); backdrop-filter: blur(5px);">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(10,10,10,0.85); backdrop-filter: blur(5px);">
           <div class="container">
             <a class="navbar-brand" href="{{ url_for('main.home') }}">
-              <i class="fas fa-home"></i> <!-- Font Awesome home icon -->
+              <i class="fas fa-home"></i>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto"> <!-- ms-auto for BS5 -->
+              <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                   <a class="nav-link {% if request.endpoint == 'main.home' %}active{% endif %}" href="{{ url_for('main.home') }}">Home</a>
                 </li>
@@ -104,7 +92,6 @@
             </div>
           </div>
         </nav>
-        <!-- Mobile-specific navbar removed, Bootstrap's default navbar is responsive -->
       </header>
 
 
@@ -116,33 +103,42 @@
         {% endblock %}
       </main>
 
-      <!-- FOOTER -->
-      <!-- mt-auto pushes footer to bottom in a flex column layout -->
-      <footer class="footer mt-auto py-3 text-bg-dark"> <!-- text-bg-dark for Bootstrap dark theme footer -->
+      <footer class="footer mt-auto py-3 text-bg-dark">
         <div class="container">
-          <div class="row justify-content-center"> <!-- Centering footer links if only one column -->
-            <div class="col-lg-4 col-md-6 mb-4 mb-md-0 text-center text-md-start"> <!-- Adjusted columns for better balance -->
-              <h5>Links</h5>
+          <div class="row justify-content-center gy-3"> <!-- gy-3 for vertical gutter on small screens -->
+            <div class="col-md-4 text-center text-md-start">
+              <h5>Connect</h5>
               <ul class="list-unstyled">
                 <li>
-                  <a class="link-secondary" href="https://github.com/Jfghanimah" target="_blank">
-                    <i class="fab fa-github fa-fw"></i> Github
+                  <a class="link-light" href="https://github.com/Jfghanimah" target="_blank">
+                    <i class="fab fa-github fa-fw me-2"></i>Github
                   </a>
                 </li>
                 <li>
-                  <a class="link-secondary" href="https://www.linkedin.com/in/joseph-ghanimah/" target="_blank">
-                    <i class="fab fa-linkedin fa-fw"></i> Linkedin
+                  <a class="link-light" href="https://www.linkedin.com/in/joseph-ghanimah/" target="_blank">
+                    <i class="fab fa-linkedin fa-fw me-2"></i>Linkedin
                   </a>
                 </li>
+              </ul>
+            </div>
+            <div class="col-md-4 text-center">
+              <h5>Quick Links</h5>
+              <ul class="list-unstyled">
+                 <li>
+                  <a class="link-light" href="{{ url_for('main.home') }}">Home</a>
+                </li>
                 <li>
-                  <a class="link-secondary" href="{{ url_for('main.redirect_resume') }}" target="_blank">Resume</a> <!-- Added Resume to footer -->
+                  <a class="link-light" href="{{ url_for('main.about') }}">About Me</a>
+                </li>
+                <li>
+                  <a class="link-light" href="{{ url_for('main.redirect_resume') }}" target="_blank">Resume</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="text-center py-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          <span class="text-body-secondary">© 2025 Joseph Ghanimah</span> <!-- Dynamic year, updated name -->
+        <div class="text-center py-3 mt-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          <span class="text-light">© 2025 Joseph Ghanimah</span> <!-- Hardcoded year for now -->
         </div>
       </footer>
     </div> <!-- End parallax_layer_front -->

@@ -2,204 +2,186 @@
 {% block content %}
 
 <!-- Picture and Intro -->
-<div class="container text-center text-white fade-in py-5">
-  <img width="250px" height="250px" class="rounded-circle img-fluid mb-4" src="{{ url_for('static',filename='images/headshot-square.jpg') }}" alt="Joseph F. Ghanimah">
-  <h1 class="display-4">Joseph F. Ghanimah</h1>
-  <p class="lead" style="font-size: calc(1.2rem + 0.5vw);">
+<div class="container text-center py-4 py-md-5 fade-in">
+  <img width="250" height="250" class="rounded-circle img-fluid mb-4 shadow-lg" src="{{ url_for('static',filename='images/headshot-square.jpg') }}" alt="Joseph F. Ghanimah">
+  <h1 class="display-4 fw-light text-light">Joseph F. Ghanimah</h1>
+  <p class="lead col-md-10 col-lg-8 mx-auto text-body-secondary" style="font-size: calc(1.1rem + 0.3vw);">
     I'm a recent graduate from The University of Illinois at Urbana-Champaign with a degree in Computer Engineering and minors in Mathematical Statistics and Data Science. I have experience in Machine Learning, Data Science, Predictive Analytics, and Cloud Computing using tools like Python, Flask, C++, TensorFlow, and Google Cloud Platform.
   </p>
 </div>
 
 <!-- Project Slab -->
-<div id="slab" class="shadow-lg container text-light fade-in py-4">
-
-  <!-- The nav is already inside #slab which is now a container, so it will be containerized. -->
-  <nav class="mb-4">
-    <ul class="nav justify-content-center">
-      <!-- Ensure text-light or a custom class if #slab's CSS doesn't make text white -->
-      <li class="nav-item"><a class="nav-link link-light" href="#mission" style="font-size: calc(1rem + 0.3vw);">Mission</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#webdev" style="font-size: calc(1rem + 0.3vw);">Web Dev</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#ml" style="font-size: calc(1rem + 0.3vw);">ML</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#miscproj" style="font-size: calc(1rem + 0.3vw);">Misc.</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#resume" style="font-size: calc(1rem + 0.3vw);">Resume</a></li>
+<div id="slab" class="sticky-top py-3 shadow-sm" style="background-color: rgba(20,20,20,0.90); backdrop-filter: blur(8px); top: -1px; z-index: 1019;">
+  <div class="container"> <!-- Container for nav links inside slab -->
+    <ul class="nav nav-pills justify-content-center">
+      <li class="nav-item"><a class="nav-link link-light" href="#mission" style="font-size: calc(0.9rem + 0.25vw);">Mission</a></li>
+      <li class="nav-item"><a class="nav-link link-light" href="#webdev" style="font-size: calc(0.9rem + 0.25vw);">Web Dev</a></li>
+      <li class="nav-item"><a class="nav-link link-light" href="#ml" style="font-size: calc(0.9rem + 0.25vw);">ML</a></li>
+      <li class="nav-item"><a class="nav-link link-light" href="#miscproj" style="font-size: calc(0.9rem + 0.25vw);">Misc.</a></li>
+      <li class="nav-item"><a class="nav-link link-light" href="#resume" style="font-size: calc(0.9rem + 0.25vw);">Resume</a></li>
     </ul>
-  </nav>
+  </div>
+</div>
 
-  <!-- <div class="container" style="max-width: 90%;"> -->
+<!-- Main Content Sections -->
+<div class="container py-4">
     
-    <!-- Mission Section-->
-    <section id="mission" class="py-3"> <!-- Reduced py-5 to py-3 if #slab already has py-4 -->
-      <h1 class="text-center mb-4">My Mission</h1>
-      <p class="lead text-center">
-        I am passionate about leveraging data to solve complex problems and drive innovation. My strong foundation in machine learning and data science, combined with adaptability and critical thinking, positions me to make meaningful contributions. I am a versatile problem-solver, eager to learn, and dedicated to making a positive impact.
+    <section id="mission" class="py-4 text-center">
+      <h2 class="display-5 fw-normal mb-4 text-light">My Mission</h2>
+      <p class="lead col-md-10 mx-auto text-body-secondary">
+        Passionate about leveraging data to solve complex problems and drive innovation. My foundation in machine learning and data science, combined with adaptability and critical thinking, positions me to make meaningful contributions.
       </p>
     </section>
-    <hr class="my-4">
+    <hr class="my-4 border-secondary border-opacity-50">
 
-    <!-- Web Dev Section-->
-    <section id="webdev" class="py-3">
-      <h1 class="text-center mb-4">Web Development</h1>
-      <div class="row">
-        <div class="col-12 col-lg-6 mb-4 d-flex">
-          <article class="card bg-opacity-10 border-light shadow-sm h-100 w-100" style="background-color: rgba(52, 58, 64, 0.5); backdrop-filter: blur(3px);"> <!-- Example custom card bg -->
+    <section id="webdev" class="py-4">
+      <h2 class="display-5 fw-normal text-center mb-4 text-light">Web Development</h2>
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
             <div class="position-relative">
                 <img src="{{ url_for('static', filename='images/mysite.jpg') }}" class="card-img-top" alt="This Website Project">
                 <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                    <h5 class="card-title transparent-1 p-3 mb-0 text-white">This Site!</h5>
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">This Site!</h5>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column text-white"> <!-- Added text-white to card-body -->
-              <p class="card-text text-info-emphasis small"><i class="material-icons" style="font-size: 1em; vertical-align: text-bottom;">date_range</i> April 2023 - Present</p>
-              <p class="card-text">This personal website showcases my work and demonstrates my skills in Python (Flask), HTML, CSS, and JavaScript, now transitioning to Bootstrap 5.</p>
-              <div class="mt-auto">
-                 <a class="btn btn-outline-info mt-2" href="https://github.com/Jfghanimah/josephghanimah.com" target="_blank">View on Github</a>
+            <div class="card-body d-flex flex-column">
+              <!-- Dates removed -->
+              <p class="card-text">This personal website showcases my work and skills in Python (Flask), HTML, CSS, and JS, built with Bootstrap 5.</p>
+              <div class="mt-auto pt-2">
+                 <a class="btn btn-outline-info" href="https://github.com/Jfghanimah/josephghanimah.com" target="_blank">View on Github</a>
               </div>
             </div>
-          </article>
+          </div>
         </div>
-
-        <div class="col-12 col-lg-6 mb-4 d-flex">
-           <article class="card bg-opacity-10 border-light shadow-sm h-100 w-100" style="background-color: rgba(52, 58, 64, 0.5); backdrop-filter: blur(3px);">
+        <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
             <div class="position-relative">
                 <img src="{{ url_for('static', filename='images/collegecod.jpg') }}" class="card-img-top" alt="CollegeCOD Project">
                 <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                    <h5 class="card-title transparent-1 p-3 mb-0 text-white">Collegecod.com</h5>
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Collegecod.com</h5>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column text-white">
-              <p class="card-text text-info-emphasis small"><i class="material-icons" style="font-size: 1em; vertical-align: text-bottom;">date_range</i> September 2019 - Ongoing</p>
-              <p class="card-text">A platform related to collegiate Call of Duty. (Further details would go here if this card linked to a dedicated project page).</p>
-              <div class="mt-auto">
-                <a class="btn btn-outline-info mt-2" href="https://collegecod.com" target="_blank">Visit Website</a>
+            <div class="card-body d-flex flex-column">
+              <!-- Dates removed -->
+              <p class="card-text">A platform for collegiate Call of Duty. Exploring features and community engagement.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="https://collegecod.com" target="_blank">Visit Website</a>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
-    <hr class="my-4">
+    <hr class="my-4 border-secondary border-opacity-50">
 
-    <!-- Machine Learning Section -->
-    <section id="ml" class="py-3">
-      <h1 class="text-center mb-4">Machine Learning Projects</h1>
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
-          <article class="card bg-opacity-10 border-light shadow-sm h-100 w-100" style="background-color: rgba(52, 58, 64, 0.5); backdrop-filter: blur(3px);">
+    <section id="ml" class="py-4">
+      <h2 class="display-5 fw-normal text-center mb-4 text-light">Machine Learning</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col d-flex">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
             <div class="position-relative">
                 <img src="{{ url_for('static', filename='images/lolmap.jpg') }}" class="card-img-top" alt="LoL Draft Analyzer">
                 <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                    <h5 class="card-title transparent-1 p-3 mb-0 text-white">LoL Draft Analyzer</h5>
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">LoL Draft Analyzer</h5>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column text-white">
-              <p class="card-text text-info-emphasis small"><i class="material-icons" style="font-size: 1em; vertical-align: text-bottom;">date_range</i> October 2022</p>
-              <p class="card-text">A model predicting League of Legends match outcomes based on champion drafts.</p>
-              <div class="mt-auto">
-                <a class="btn btn-outline-info mt-2" href="{{ url_for('main.lol_draft_project') }}">Learn More</a>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">Predicting LoL match outcomes from champion drafts using machine learning techniques.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.lol_draft_project') }}">Learn More</a>
               </div>
             </div>
-          </article>
+          </div>
         </div>
-
-        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
-          <article class="card bg-opacity-10 border-light shadow-sm h-100 w-100" style="background-color: rgba(52, 58, 64, 0.5); backdrop-filter: blur(3px);">
-             <div class="position-relative">
+        <div class="col d-flex">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
                 <img src="{{ url_for('static', filename='images/dcgan.gif') }}" class="card-img-top" alt="DCGAN Project">
-                 <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                    <h5 class="card-title transparent-1 p-3 mb-0 text-white">DCGAN</h5>
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">DCGAN</h5>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column text-white">
-              <p class="card-text text-info-emphasis small"><i class="material-icons" style="font-size: 1em; vertical-align: text-bottom;">date_range</i> January 2020</p>
-              <p class="card-text">Deep Convolutional Generative Adversarial Network for generating realistic images.</p>
-              <div class="mt-auto">
-                <a class="btn btn-outline-info mt-2" href="{{ url_for('main.dcgan_project') }}">Learn More</a>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">DCGAN for generating and distinguishing realistic numerical digit images.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.dcgan_project') }}">Learn More</a>
               </div>
             </div>
-          </article>
+          </div>
         </div>
-
-        <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
-          <article class="card bg-opacity-10 border-light shadow-sm h-100 w-100" style="background-color: rgba(52, 58, 64, 0.5); backdrop-filter: blur(3px);">
+        <div class="col d-flex">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
             <div class="position-relative">
                 <img src="{{ url_for('static', filename='images/snake_game_ai.jpg') }}" class="card-img-top" alt="Snake Game AI">
                 <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                    <h5 class="card-title transparent-1 p-3 mb-0 text-white">Perfect Snake AI</h5>
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Perfect Snake AI</h5>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column text-white">
-              <p class="card-text text-info-emphasis small"><i class="material-icons" style="font-size: 1em; vertical-align: text-bottom;">date_range</i> December 2021</p>
-              <p class="card-text">Exploring algorithms for an AI to master the game of Snake perfectly.</p>
-              <div class="mt-auto">
-                <a class="btn btn-outline-info mt-2" href="{{ url_for('main.snake_ai_project') }}">Learn More</a>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">Exploring algorithms for an AI to achieve perfect play in the Snake game.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.snake_ai_project') }}">Learn More</a>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
-    <hr class="my-4">
+    <hr class="my-4 border-secondary border-opacity-50">
 
-    <!-- Misc Proj Section-->
-    <section id="miscproj" class="py-3">
-      <h1 class="text-center mb-4">Miscellaneous Projects</h1>
-      <div class="row">
-        <div class="col-12 col-lg-6 mb-4 d-flex">
-          <article class="card bg-opacity-10 border-light shadow-sm h-100 w-100" style="background-color: rgba(52, 58, 64, 0.5); backdrop-filter: blur(3px);">
+    <section id="miscproj" class="py-4">
+      <h2 class="display-5 fw-normal text-center mb-4 text-light">Miscellaneous Projects</h2>
+      <div class="row g-4">
+         <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
             <div class="position-relative">
                 <img src="{{ url_for('static', filename='images/tax.jpg') }}" class="card-img-top" alt="Improved Glicko2 Rating">
                 <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                    <h5 class="card-title transparent-1 p-3 mb-0 text-white">Improved Glicko2 Rating</h5>
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Improved Glicko2</h5>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column text-white">
-              <p class="card-text text-info-emphasis small"><i class="material-icons" style="font-size: 1em; vertical-align: text-bottom;">date_range</i> January 2022</p>
-              <p class="card-text">An enhanced Glicko2 rating system for accurately measuring player skill in competitive games.</p>
-              <div class="mt-auto">
-                <a class="btn btn-outline-info mt-2" href="{{ url_for('main.rating_project') }}">Learn More</a>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">An enhanced Glicko2 rating system for more accurate player skill measurement.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.rating_project') }}">Learn More</a>
               </div>
             </div>
-          </article>
+          </div>
         </div>
-
-        <div class="col-12 col-lg-6 mb-4 d-flex">
-          <article class="card bg-opacity-10 border-light shadow-sm h-100 w-100" style="background-color: rgba(52, 58, 64, 0.5); backdrop-filter: blur(3px);">
+        <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
             <div class="position-relative">
                 <img src="{{ url_for('static', filename='images/project1.webp') }}" class="card-img-top" alt="Weight Lifting App">
                 <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                    <h5 class="card-title transparent-1 p-3 mb-0 text-white">Weight Lifting Social App</h5>
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Lifting Social App</h5>
                 </div>
             </div>
-            <div class="card-body d-flex flex-column text-white">
-              <p class="card-text text-info-emphasis small"><i class="material-icons" style="font-size: 1em; vertical-align: text-bottom;">date_range</i> September 2022 - Ongoing</p>
-              <p class="card-text">A concept for a social fitness app for tracking progress and connecting with others.</p>
-              <div class="mt-auto">
-                <a class="btn btn-outline-info mt-2" href="{{ url_for('main.lifting_app_project') }}">Learn More</a>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">Concept for a social fitness app for tracking progress and connecting with fitness enthusiasts.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.lifting_app_project') }}">Learn More</a>
               </div>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>
-    <hr class="my-4">
+    <hr class="my-4 border-secondary border-opacity-50">
 
-    <!-- Resume Section -->
-    <section id="resume" class="py-3">
-      <h1 class="text-center mb-4">Resume</h1>
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8 text-center">
-          <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank">
-            <img class="img-fluid rounded shadow-lg" src="{{ url_for('static',filename='images/resume.jpg') }}" alt="Resume Preview">
-          </a>
-           <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="btn btn-primary btn-lg mt-4">
-            Download Resume (PDF)
-          </a>
-        </div>
+    <section id="resume" class="py-4 text-center">
+      <h2 class="display-5 fw-normal mb-4 text-light">Resume</h2>
+      <div class="col-md-10 col-lg-8 mx-auto">
+        <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="d-block mb-3">
+          <img class="img-fluid rounded shadow-lg" src="{{ url_for('static',filename='images/resume.jpg') }}" alt="Resume Preview" style="border: 1px solid rgba(255,255,255,0.2);">
+        </a>
+         <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="btn btn-primary btn-lg">
+          <i class="fas fa-download me-2"></i> Download Resume (PDF)
+        </a>
       </div>
     </section>
-  <!-- </div> --> <!-- End of the removed inner container -->
-</div> <!-- end #slab -->
+</div>
 
-<div style="padding-bottom: 100px;"></div>
+<div class="py-5"></div> <!-- Increased bottom padding for more space before footer -->
 
 {% endblock content %}

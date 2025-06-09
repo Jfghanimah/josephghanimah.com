@@ -5,14 +5,11 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
-  /* min-vh-100, d-flex, flex-column are handled by Bootstrap classes on <body> */
-  /* Parallax background handles body background */
-  /* data-bs-theme="dark" in base.html sets default text colors for dark mode */
 }
 
 /* Animation (if still used and desired) */
 .fade-in {
-  animation: fadeIn linear 1.5s;
+  animation: fadeIn linear 1.0s;
   animation-fill-mode: forwards;  
 }
 @keyframes fadeIn {
@@ -20,56 +17,8 @@ body {
   to    {opacity: 1;}
 }
 
-/* Styles for the main scrolling navbar if the inline style in base.html isn't preferred */
-/*
-.navbar {
-  background-color: rgba(10,10,10,0.85) !important; 
-  backdrop-filter: blur(5px);
-}
-*/
-
-/* Styles for #slab if the inline style in home.html isn't preferred */
-/*
-#slab.sticky-top {
-  background-color: rgba(20,20,20,0.90) !important;
-  backdrop-filter: blur(8px);
-  top: -1px; 
-  z-index: 1019; 
-}
-*/
-
-/* Styles for Cards if inline styles in home.html aren't preferred for backdrop-filter or specific opacity */
-/*
-.card {
-  --bs-bg-opacity: .65; // Or use bg-opacity- classes in HTML
-  backdrop-filter: blur(4px);
-}
-.card-title-custom-overlay { // If you want to replace inline style for card title
-  background-color: rgba(10,10,15,0.75);
-}
-*/
-
 /* Ensure Material Icons (if used) or Font Awesome icons align well */
 .material-icons, .fas, .fab { /* General icon alignment */
   vertical-align: middle; /* Or text-bottom, baseline, etc. */
 }
 
-/* Customization for .nav-pills links in #slab if default is not desired */
-#slab .nav-pills .nav-link.link-light:hover,
-#slab .nav-pills .nav-link.link-light:focus {
-  background-color: rgba(255, 255, 255, 0.15); /* Slightly more prominent hover for pills */
-}
-#slab .nav-pills .nav-link.link-light.active { /* If you add active state to slab nav */
-    background-color: var(--bs-primary); /* Example using Bootstrap primary color */
-    color: var(--bs-light) !important;
-}
-
-/* Footer bottom strip custom background if not inline */
-/*
-.footer-bottom-custom-bg {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-*/
-
-/* Remove old Materialize-specific styles and overly broad Bootstrap overrides unless absolutely necessary */
-/* For example, the previous .navbar-dark .navbar-nav .nav-link:hover might be too specific if Bootstrap's defaults are fine */

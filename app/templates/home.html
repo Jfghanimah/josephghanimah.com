@@ -1,40 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- Picture and Intro -->
-<div class="container text-center py-4 py-md-5 fade-in">
-  <img width="250" height="250" class="rounded-circle img-fluid mb-4 shadow-lg" src="{{ url_for('static',filename='images/headshot-square.jpg') }}" alt="Joseph F. Ghanimah">
-  <h1 class="display-4 fw-light text-light">Joseph F. Ghanimah</h1>
-  <p class="lead col-md-10 col-lg-8 mx-auto text-body-secondary" style="font-size: calc(1.1rem + 0.3vw);">
+<!-- Picture, Intro, and Mission -->
+<div class="container text-center py-5 fade-in">
+  <img width="300" height="300" class="rounded-circle img-fluid mb-4 shadow-lg" src="{{ url_for('static',filename='images/headshot-square.jpg') }}" alt="Joseph F. Ghanimah">
+  <h1 class="display-3 fw-light text-light mb-3">Joseph F. Ghanimah</h1> 
+
+  <p class="text-body-secondary mb-4" style="font-size: calc(1.2rem + 0.4vw);">
     I'm a recent graduate from The University of Illinois at Urbana-Champaign with a degree in Computer Engineering and minors in Mathematical Statistics and Data Science. I have experience in Machine Learning, Data Science, Predictive Analytics, and Cloud Computing using tools like Python, Flask, C++, TensorFlow, and Google Cloud Platform.
   </p>
+  
+  <p class="text-body-secondary" style="font-size: calc(1.2rem + 0.4vw);">
+    Passionate about leveraging data to solve complex problems and drive innovation. My strong foundation in machine learning and data science, combined with adaptability and critical thinking, positions me to make meaningful contributions to impactful projects.
+  </p>
+
 </div>
 
-<!-- Project Slab -->
-<div id="slab" class="sticky-top py-3 shadow-sm" style="background-color: rgba(20,20,20,0.90); backdrop-filter: blur(8px); top: -1px; z-index: 1019;">
-  <div class="container"> <!-- Container for nav links inside slab -->
-    <ul class="nav nav-pills justify-content-center">
-      <li class="nav-item"><a class="nav-link link-light" href="#mission" style="font-size: calc(0.9rem + 0.25vw);">Mission</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#webdev" style="font-size: calc(0.9rem + 0.25vw);">Web Dev</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#ml" style="font-size: calc(0.9rem + 0.25vw);">ML</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#miscproj" style="font-size: calc(0.9rem + 0.25vw);">Misc.</a></li>
-      <li class="nav-item"><a class="nav-link link-light" href="#resume" style="font-size: calc(0.9rem + 0.25vw);">Resume</a></li>
-    </ul>
-  </div>
+<!-- Horizontal Rule after Intro/Mission -->
+<div class="container">
+    <hr class="my-5 border-light border-2 opacity-50">
 </div>
 
-<!-- Main Content Sections -->
-<div class="container py-4">
+
+<!-- Project Sections -->
+<div class="container py-4"> <!-- Container for all project sections -->
     
-    <section id="mission" class="py-4 text-center">
-      <h2 class="display-5 fw-normal mb-4 text-light">My Mission</h2>
-      <p class="lead col-md-10 mx-auto text-body-secondary">
-        Passionate about leveraging data to solve complex problems and drive innovation. My foundation in machine learning and data science, combined with adaptability and critical thinking, positions me to make meaningful contributions.
-      </p>
-    </section>
-    <hr class="my-4 border-secondary border-opacity-50">
-
-    <section id="webdev" class="py-4">
+    <section id="webdev" class="mb-5"> <!-- Added mb-5 for more space between sections -->
       <h2 class="display-5 fw-normal text-center mb-4 text-light">Web Development</h2>
       <div class="row g-4">
         <div class="col-12 col-lg-6">
@@ -46,7 +37,6 @@
                 </div>
             </div>
             <div class="card-body d-flex flex-column">
-              <!-- Dates removed -->
               <p class="card-text">This personal website showcases my work and skills in Python (Flask), HTML, CSS, and JS, built with Bootstrap 5.</p>
               <div class="mt-auto pt-2">
                  <a class="btn btn-outline-info" href="https://github.com/Jfghanimah/josephghanimah.com" target="_blank">View on Github</a>
@@ -63,7 +53,6 @@
                 </div>
             </div>
             <div class="card-body d-flex flex-column">
-              <!-- Dates removed -->
               <p class="card-text">A platform for collegiate Call of Duty. Exploring features and community engagement.</p>
               <div class="mt-auto pt-2">
                 <a class="btn btn-outline-info" href="https://collegecod.com" target="_blank">Visit Website</a>
@@ -73,9 +62,10 @@
         </div>
       </div>
     </section>
-    <hr class="my-4 border-secondary border-opacity-50">
+    
+    <hr class="my-5 border-light border-2 opacity-50">
 
-    <section id="ml" class="py-4">
+    <section id="ml" class="mb-5">
       <h2 class="display-5 fw-normal text-center mb-4 text-light">Machine Learning</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col d-flex">
@@ -128,9 +118,10 @@
         </div>
       </div>
     </section>
-    <hr class="my-4 border-secondary border-opacity-50">
+    
+    <hr class="my-5 border-light border-2 opacity-50">
 
-    <section id="miscproj" class="py-4">
+    <section id="miscproj" class="mb-5">
       <h2 class="display-5 fw-normal text-center mb-4 text-light">Miscellaneous Projects</h2>
       <div class="row g-4">
          <div class="col-12 col-lg-6">
@@ -167,9 +158,10 @@
         </div>
       </div>
     </section>
-    <hr class="my-4 border-secondary border-opacity-50">
+  
+    <hr class="my-5 border-light border-2 opacity-50">
 
-    <section id="resume" class="py-4 text-center">
+    <section id="resume" class="text-center"> <!-- Removed mb-5 from last section -->
       <h2 class="display-5 fw-normal mb-4 text-light">Resume</h2>
       <div class="col-md-10 col-lg-8 mx-auto">
         <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="d-block mb-3">
@@ -182,6 +174,6 @@
     </section>
 </div>
 
-<div class="py-5"></div> <!-- Increased bottom padding for more space before footer -->
+<div class="py-5"></div> <!-- Bottom padding before footer -->
 
 {% endblock content %}

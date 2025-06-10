@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-    .parallax_layer_back {
-        height: 1200px !important;
-    }
-</style>
 
-<div class='container section center white-text'>
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-8">
+      
+      <!-- Frosted Glass Pane -->
+      <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background-color: rgba(20,20,25,0.60); backdrop-filter: blur(10px);">
+        
+        <!-- Page Header -->
+        <div class="text-center mb-4">
+            <h1 class="display-5 fw-light text-light">Smash Bros. Ultimate Rankings</h1>
+            <p class="lead text-body-secondary">Live player ratings using my custom Glicko-2 system.</p>
+        </div>
+        
+        <!-- Table Wrapper for Responsiveness -->
+        <div class="table-responsive">
+            {{ table|safe }}
+        </div>
 
-        <h2 class="grey-text text-lighten-4">Smash Bros. Rankings </h2>
-
-        {{ table|safe }}
-
-        <br><br>
-         
-
+      </div>
+    </div>
+  </div>
 </div>
-
-<br>
-
 {% endblock content %}

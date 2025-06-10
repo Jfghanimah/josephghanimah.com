@@ -50,9 +50,9 @@ def about():
 def lol_draft_project():
     return render_template("project1.html", title="Lol Draft Analyzer")
 
-@main.route("/dcgan")
-def dcgan_project():
-    return render_template("project2.html", title="Deep Convolutional Generative Adversarial Network")
+@main.route("/discordbot")
+def discord_bot_project():
+    return render_template("project2.html", title="Community AI Chatbot")
 
 @main.route("/snake-ai")
 def snake_ai_project():
@@ -62,9 +62,9 @@ def snake_ai_project():
 def rating_project():
     return render_template("project4.html", title="Improved Glicko2 Rating System")
 
-@main.route("/lifting-app")
-def lifting_app_project():
-    return render_template("project5.html", title="Social Weight Lifting App")
+@main.route("/algo-trading")
+def algo_trading_project():
+    return render_template("project5.html", title="Algorithmic Trading Bot")
 
 
 @main.route("/video")
@@ -79,7 +79,10 @@ def smash():
     ratings_df = ratings_df.sort_values(by='Rating', ascending=False)
     ratings_df.index = np.arange(1, len(ratings_df)+1)
 
-    return render_template("smash.html", table=ratings_df.to_html(), title="Smash Ranks")
+    # Add Bootstrap classes to the generated HTML table
+    table_html = ratings_df.to_html(classes="table table-striped table-hover align-middle", border=0)
+
+    return render_template("smash.html", table=table_html, title="Smash Ranks")
 
 
 @main.route("/smash2",  methods=['GET', 'POST'])

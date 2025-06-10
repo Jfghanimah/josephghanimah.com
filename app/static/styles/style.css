@@ -9,7 +9,7 @@ body {
 
 /* Animation (if still used and desired) */
 .fade-in {
-  animation: fadeIn linear 1.0s;
+  animation: fadeIn linear 0.7s;
   animation-fill-mode: forwards;  
 }
 @keyframes fadeIn {

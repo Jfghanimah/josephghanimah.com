@@ -1,61 +1,69 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-  .parallax_layer_back {
-    height: 1200px !important;
-  }
-</style>
-
-
-<!-- Picture and Intro -->
-<div class="container center-align white-text fade-in">
-  <br><br>
-  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
-  <h1>Joseph F. Ghanimah</h1>
-  <br><br><br>
-</div>
-
-<!-- Project Slab -->
-<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
-
-  <div class="section container">
-    <br id="bio">
-    <div class="row">
-
-      <h1 class="center-align">Social Weight Lifting App</h1>
-      <br><br>
-      <p class="flow-text">Our mobile app is designed specifically for intermediate lifters who are looking for an easy
-        and effective way to track and execute their lifting programs. With our app, users can easily input and track
-        their workouts, share their progress with other users, and receive personalized recommendations for their
-        training. Our app also includes features such as an in-app calculator and timers to assist with plate weights
-        and rest periods, making it a complete toolkit for intermediate lifters.</p><br>
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-11 col-lg-10 col-xl-9">
+      
+      <!-- Frosted Glass Pane -->
+      <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background-color: rgba(20,20,25,0.88); backdrop-filter: blur(10px);">
         
-      <p class="center-align">
-        <img  width="500px" style="border-radius:4%;" src="{{ url_for('static',filename='images/plate-calc.webp') }}">
-      </p> <br>
-        <p class="flow-text">To monetize the app, I plan to offer it for free and generate revenue through ad revenue from
-        users who are using the app for an entire gym session. This presents a significant monetization opportunity, as
-        users will be engaged with the app for a significant amount of time, providing ample opportunity for ad
-        impressions. However, I realize that building a high-quality, user-friendly app that meets the needs of our
-        target audience will require significant resources and expertise, and could be a daunting task for a small team
-        or startup. Additionally, ongoing maintenance and updates will be necessary to keep the app relevant and useful
-        to our users, and effective strategies for user acquisition and retention will need to be developed and
-        implemented.</p><br>
-      <p class="flow-text">To promote the app, I plan to pay fitness influencers to use and promote the product, run
-        paid advertising campaigns through social media or targeted websites, and create and share high-quality content
-        related to the app and the benefits it offers to intermediate lifters. However, I also recognize that the idea
-        of both a lifting toolkit and a social sphere in one app could potentially make the app very overloaded and
-        confusing to navigate. It will be important to carefully consider the balance between functionality and
-        usability to ensure that the app is easy for users to understand and use.</p>
-      <br><br><br><br><br>
+        <!-- Project Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-light text-light">Algorithmic Trading Bot</h1>
+            <p class="lead text-body-secondary">Automating quantitative financial strategies in a live environment.</p>
+        </div>
+        
+        <!-- Placeholder Hero Image -->
+        <div class="text-center mb-5">
+            <img src="{{ url_for('static', filename='images/trading_bot_hero.jpg') }}" class="img-fluid rounded-3 shadow-lg" alt="Trading bot dashboard or chart" style="max-width: 750px; border: 1px solid rgba(255,255,255,0.1);">
+        </div>
 
+        <!-- Main Content -->
+        <div>
+            <h2 class="h4 text-info fw-bold">The Objective: Systematic & Disciplined Trading</h2>
+            <p class="text-body-secondary mb-4">
+                Financial markets are driven by data, speed, and psychology. To remove emotion and execute strategies with perfect discipline, I developed a multi-strategy algorithmic trading bot. This Python-based system connects to my live brokerage account via its API, allowing it to analyze market data, identify opportunities, and execute trades automatically based on a predefined set of quantitative rules.
+            </p>
+
+            <h3 class="h5 text-light mt-5 border-bottom border-secondary pb-2 mb-3">Implemented Quantitative Strategies</h3>
+            <p class="text-body-secondary mb-2">
+                The bot is not a single algorithm, but a framework designed to run multiple, independent strategies simultaneously. The primary strategies I've developed and deployed include:
+            </p>
+
+            <h4 class="h6 text-info mt-4">1. Leveraged ETF Hedging (TQQQ Risk Management)</h4>
+            <p class="text-body-secondary mb-4">
+                This is the most complex strategy, designed to capture the upside of a leveraged ETF like TQQQ while actively managing its significant downside risk.
+                <ul>
+                    <li class="text-body-secondary">The core of the strategy is a custom formula I developed that incorporates <b>market volatility (like VIX) and interest rate data</b> to determine an optimal hedge ratio.</li>
+                    <li class="text-body-secondary">Based on this ratio, the algorithm automatically purchases <b>protective put options</b> to hedge the long TQQQ position.</li>
+                    <li class="text-body-secondary">The goal is to systematically reduce drawdowns during market downturns, creating a more favorable risk-adjusted return profile compared to a simple buy-and-hold approach.</li>
+                </ul>
+            </p>
+
+            <h4 class="h6 text-info">2. Statistical Arbitrage: Pairs Trading</h4>
+            <p class="text-body-secondary mb-4">
+                This strategy operates on the principle of mean reversion.
+                <ol>
+                    <li class="text-body-secondary">The algorithm continuously scans pairs of historically correlated assets (e.g., two stocks in the same sector).</li>
+                    <li class="text-body-secondary">It performs statistical tests, such as the <b>Augmented Dickey-Fuller test, to check for cointegration</b> (a stationary, long-term relationship).</li>
+                    <li class="text-body-secondary">When the price ratio between two cointegrated assets diverges significantly from its historical mean, the bot simultaneously goes long on the undervalued asset and short on the overvalued one, betting on their eventual reconvergence.</li>
+                </ol>
+            </p>
+
+            <h4 class="h6 text-info">3. Market Making</h4>
+            <p class="text-body-secondary mb-4">
+                This strategy aims to profit from the bid-ask spread. The bot places simultaneous buy (bid) and sell (ask) orders on a specific asset, providing liquidity to the market. As other market participants execute trades against these orders, the bot captures the small difference between the bid and ask prices. This requires careful management of inventory risk and rapid order placement.
+            </p>
+
+            <h3 class="h5 text-light mt-5">Technological Stack & Learnings</h3>
+            <p class="text-body-secondary">
+                The bot is built in Python, utilizing libraries like `pandas` and `numpy` for data analysis, and the brokerage's official REST API for market data and order execution. Developing this project has been an incredible learning experience in quantitative finance, risk management, and the practical challenges of building robust, automated systems that interact with live, high-stakes environments.
+            </p>
+          
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
-
-
-<br><br><br><br><br><br><br>
-
 {% endblock content %}

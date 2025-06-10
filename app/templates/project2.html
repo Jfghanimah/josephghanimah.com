@@ -1,60 +1,77 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-  .parallax_layer_back {
-    height: 1200px !important;
-  }
-</style>
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-11 col-lg-10 col-xl-9">
+      
+      <!-- Frosted Glass Pane -->
+      <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background-color: rgba(20,20,25,0.70); backdrop-filter: blur(10px);">
+        
+        <!-- Project Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-light text-light">Community AI Chatbot</h1>
+            <p class="lead text-body-secondary">Building a custom-trained LLM for a Discord Community.</p>
+        </div>
+        
+        <!-- Placeholder Hero Image -->
+        <div class="text-center mb-5">
+            <img src="{{ url_for('static', filename='images/discord_bot_hero.jpg') }}" class="img-fluid rounded-3 shadow-lg" alt="Discord bot interface" style="max-width: 400px; border: 1px solid rgba(255,255,255,0.1);">
+        </div>
 
+        <!-- Main Content -->
+        <div>
+            <h2 class="h4 text-info fw-bold">The Vision: A Smarter Community Assistant</h2>
+            <p class="text-body-secondary mb-4">
+                Standard Discord bots are often limited to pre-programmed commands. My goal was to create something far more dynamic: a true AI companion for our server. I wanted a bot that could understand the context of conversations, remember past interactions, answer questions based on our community's specific knowledge, and even adopt a unique personality. This project was an exercise in practical Large Language Model (LLM) application, from data curation to real-time deployment.
+            </p>
 
-<!-- Picture and Intro -->
-<div class="container center-align white-text fade-in">
-  <br><br>
-  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
-  <h1>Joseph F. Ghanimah</h1>
-  <br><br><br>
-</div>
+            <h3 class="h5 text-light mt-4">Project Architecture</h3>
+            <p class="text-body-secondary mb-4">
+                The system connects a powerful language model to the Discord platform through a lightweight Python backend. It's designed to be interactive and responsive, listening for mentions or specific commands to activate and join the conversation. The core challenge wasn't just connecting to an API, but ensuring the bot's responses were relevant, coherent, and genuinely useful to the community it served.
+            </p>
+            
+            <div class="text-center my-5">
+                <figure class="figure">
+                    <img src="{{ url_for('static', filename='images/discord_bot_training.jpg') }}" class="figure-img img-fluid rounded shadow" alt="Diagram of the training data pipeline for the bot">
+                    <figcaption class="figure-caption text-body-secondary mt-2">The bot's intelligence comes from a two-layer orchestration system. A primary "meta-controller" call determines the optimal strategy for each query, including which model to route the request to (e.g., basic, reasoning) and the necessary message context (10s or 100s of messages). </figcaption>
+                </figure>
+            </div>
+            
+            <h3 class="h5 text-light mt-4 border-bottom border-secondary pb-2 mb-3">Technical Implementation</h3>
+            
+            <h4 class="h6 text-info">Data Curation and Fine-Tuning</h4>
+            <p class="text-body-secondary mb-4">
+                To give the bot its unique personality and knowledge base, I didn't use a generic, off-the-shelf model. Instead, I curated a dataset from our server's chat logs (with user privacy in mind). This data was cleaned and transformed into a high-quality, instruction-based format suitable for fine-tuning. I used this dataset to fine-tune a base language model (like Llama or a smaller distilled model), effectively teaching it our community's slang, inside jokes, and common topics. This step was critical for moving beyond generic responses to truly contextual interactions.
+            </p>
 
-<!-- Project Slab -->
-<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+            <h4 class="h6 text-info">Real-Time Interaction with Discord.py</h4>
+            <p class="text-body-secondary mb-4">
+                The bot's connection to the server is handled by a Python application using the `discord.py` library. This backend is responsible for:
+                <ul>
+                    <li class="text-body-secondary">Listening for events, such as being mentioned (`@BotName`) in a channel.</li>
+                    <li class="text-body-secondary">Fetching recent conversation history to provide context for the LLM.</li>
+                    <li class="text-body-secondary">Constructing a carefully engineered prompt that includes the context and the new user query.</li>
+                    <li class="text-body-secondary">Sending the prompt to the fine-tuned LLM, receiving the generated response, and posting it back to the Discord channel in real-time.</li>
+                </ul>
+            </p>
 
-  <div class="section container">
-    <br id="bio">
-    <div class="row">
-
-      <h1 class="center-align">DCGAN</h1>
-      <br><br>
-      <p class="flow-text">I created a Deep Convolutional Generative Adversarial Network (DCGAN) as a machine learning
-        project. A DCGAN is a type of model that is designed to generate synthetic images that are indistinguishable
-        from real ones. It does this using two neural networks that are trained simultaneously: a generator network and
-        a discriminator network.
-      </p><br>
-
-      <p class="center-align">
-        <img  width="500px" style="border-radius:2%;" src="{{ url_for('static',filename='images/dcgan.gif') }}">
-      </p> <br>
-      <p class="flow-text">I trained the generator network to create images that looked real, and the discriminator
-        network to distinguish real images from fake ones. As I trained the two networks together, the generator became
-        better at creating realistic images, and the discriminator became better at distinguishing real images from fake
-        ones.</p><br>
-      <p class="flow-text">I used my DCGAN for a variety of purposes, including image generation, data augmentation, and
-        style transfer. It was a powerful and versatile tool that allowed me to generate synthetic images of faces,
-        animals, landscapes, and more. The DCGAN was also an interesting example of a generative model, and inspired a
-        lot of research in the field of machine learning.</p><br>
-      <p class="flow-text">Overall, creating a Deep Convolutional Generative Adversarial Network was a fascinating and
-        rewarding project. It allowed me to explore the latest advances in machine learning, and to create something
-        that had the potential to have a significant impact in a wide range of applications.</p><br>
-
-
-      <br><br><br><br><br>
-
+            <h3 class="h5 text-light mt-4">Key Challenges & Learnings</h3>
+            <p class="text-body-secondary mb-4">
+                One of the biggest challenges was managing conversation context. LLMs are stateless, so providing a concise yet comprehensive history of the recent chat was essential for coherent replies. I implemented a rolling window for conversation history to keep the input prompt efficient. Another learning was the importance of prompt engineering; small changes to the instructions given to the model could dramatically alter the tone and quality of its responses. This project was a fantastic hands-on lesson in the full lifecycle of a modern AI product, from data-centric training to live deployment and interaction.
+            </p>
+            
+            <!-- TODO Add a link to the repo when public -->
+            <!-- 
+            <div class="text-center mt-5">
+                <a class="btn btn-primary btn-lg" href="#" target="_blank">
+                    <i class="fab fa-github fa-fw me-2"></i>View Project on GitHub
+                </a>
+            </div>
+            -->
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
-
-
-<br><br><br><br><br><br><br>
-
 {% endblock content %}

@@ -1,68 +1,73 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-  .parallax_layer_back {
-    height: 1200px !important;
-  }
-</style>
 
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-11 col-lg-10 col-xl-9">
+      
+      <!-- Frosted Glass Pane -->
+      <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background-color: rgba(20,20,25,0.88); backdrop-filter: blur(10px);">
+        
+        <!-- Project Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-light text-light">An Advanced Team-Based Rating System</h1>
+            <p class="lead text-body-secondary">Adapting and improving Glicko-2 for modern competitive gaming.</p>
+        </div>
+        
+        <!-- Hero Image -->
+        <div class="text-center mb-5">
+            <img src="{{ url_for('static', filename='images/glicko.jpg') }}" class="img-fluid rounded-3 shadow-lg" alt="Mathematical formulas for rating systems" style="max-width: 700px; border: 1px solid rgba(255,255,255,0.1);">
+        </div>
 
-<!-- Picture and Intro -->
-<div class="container center-align white-text fade-in">
-  <br><br>
-  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
-  <h1>Joseph F. Ghanimah</h1>
-  <br><br><br>
-</div>
+        <!-- Main Content -->
+        <div>
+            <h2 class="h4 text-info fw-bold">The Problem with Existing Systems</h2>
+            <p class="text-body-secondary mb-4">
+                Rating systems like Elo and Glicko-2 are foundational to competitive matchmaking, from chess to video games. They excel at modeling 1v1 encounters where the outcome is a simple win, loss, or draw. However, when applied to modern team-based esports like Call of Duty or my own local Super Smash Bros. tournaments, their limitations become clear. I identified three core problems I wanted to solve:
+            </p>
+            <ol class="list-group list-group-numbered list-group-flush mb-4">
+                <li class="list-group-item bg-transparent text-body-secondary border-secondary"><strong>Delayed Updates:</strong> Glicko-2 is designed to be updated in batches after a "rating period" of many games, making it unsuitable for live, game-by-game updates.</li>
+                <li class="list-group-item bg-transparent text-body-secondary border-secondary"><strong>Team Dynamics:</strong> The systems are inherently player-vs-player and don't have a native way to handle team-based matchups where individual player ratings should contribute to a collective team strength.</li>
+                <li class="list-group-item bg-transparent text-body-secondary border-secondary"><strong>Ignoring Performance:</strong> A win is a win, whether by a razor-thin margin or a complete blowout. Existing systems can't account for the *degree* of victory, losing valuable performance data in the process.</li>
+            </ol>
 
-<!-- Project Slab -->
-<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+            <h3 class="h5 text-light mt-5 border-bottom border-secondary pb-2 mb-3">Engineering a Better Solution</h3>
+            <p class="text-body-secondary mb-2">
+                My goal was to create an accurate, live, team-based rating system. This required a deep dive into the mathematics of Glicko-2 and developing novel adaptations to address each of its shortcomings.
+            </p>
 
-  <div class="section container">
-    <br id="bio">
-    <div class="row">
+            <h4 class="h6 text-info mt-4">1. Enabling Live, Per-Game Updates</h4>
+            <p class="text-body-secondary mb-4">
+                The Glicko-2 formula involves summations over multiple games played within a rating period. To enable live updates, I re-engineered the core calculation (`rating_change` function) to operate on a single matchup. This involved "unrolling" the summations and modifying the update steps to process one game at a time, transforming it from a batch system into a real-time one.
+            </p>
+            
+            <h4 class="h6 text-info">2. Modeling Team-vs-Team Encounters</h4>
+            <p class="text-body-secondary mb-4">
+                To handle team matchups, my system (`team_battle` function) calculates a temporary, aggregate rating for each team by averaging the ratings and rating deviations (RD) of its players. The rating update for each individual player is then calculated based on their performance against the *opposing team's average strength*. This method ensures that individual contributions are measured against the collective skill of their opponents, a crucial factor in team games with shifting rosters.
+            </p>
 
-      <h1 class="center-align">Better Rating System</h1>
-      <br><br>
-      <p class="flow-text">•I decided to create an improved version of the Glicko2 rating system.
-        The Glicko2 rating system is a widely used method for evaluating the skill levels of players in competitive
-        games, and has been applied to a variety of different domains including chess, go, and video games. However,
-        there are some limitations to the original Glicko2 system, and I saw an opportunity to make some improvements.
-      </p><br>
+            <h4 class="h6 text-info">3. Incorporating Score and Margin of Victory</h4>
+            <p class="text-body-secondary mb-4">
+                This was the most significant innovation. Instead of a binary win/loss (a score of 1 or 0), I needed to translate a raw game score (e.g., getting '3 stocked' in a game like Super Smash Ultimate) into a meaningful performance percentage. A simple ratio like `score / total_score` is flawed because winning the first point is statistically easier than winning the last point when the score is tied.
+            </p>
+            <p class="text-body-secondary">
+                To solve this, I implemented a <b>Binomial Cumulative Distribution Function (CDF)</b>. For each game and/or mode (like "Search and Destroy" or "Hardpoint"), the `bionomial_cdf` function calculates the true probability of winning the entire game given a certain score percentage. This `G` value (for "Game Outcome") becomes the new "score" fed into the Glicko-2 formula. A dominant 4-0 victory now results in a `G` value close to 1.0, while a close 4-3 win results in a `G` value much closer to 0.5, ensuring that dominant victories are rewarded more significantly. This can all memoized for performance.
+            </p>
+            
+            <h3 class="h5 text-light mt-5">Results and Application</h3>
+            <p class="text-body-secondary">
+                The resulting system is a significant improvement over standard Glicko-2 for its intended purpose. It provides more stable, accurate, and responsive ratings that reflect not just if a team won, but *how* they won. This system is currently live and in use for ranking my local Super Smash Bros. group, demonstrating its practical application and effectiveness.
+            </p>
 
-      <p class="center-align">
-        <img  width="500px" style="border-radius:2%;" src="{{ url_for('static',filename='images/glicko.jpg') }}">
-      </p> <br>
-
-      <p class="flow-text">To create my improved version of the Glicko2 rating system, I started by reviewing the
-        existing literature and understanding the underlying principles and assumptions of the original system. I then
-        identified areas where I thought the system could be improved, and developed a set of modifications and
-        enhancements to address these issues. Some of the specific changes I made included:</p><br>
-      <ul class="flow-text">
-        <li class="flow-text">• Adjusting the way the system handles draws and ties</li>
-        <li class="flow-text">• Incorporating additional information about the players and their history into the rating calculation</li>
-        <li class="flow-text">• Adding a mechanism for adjusting the rating period dynamically based on the rate of change in the ratings
-        </li>
-      </ul><br>
-      <p class="flow-text">After implementing my improved version of the Glicko2 rating system, I ran a series of
-        simulations and tests to evaluate its performance. Overall, I was pleased with the results and found that my
-        system outperformed the original Glicko2 system in a variety of different scenarios. I believe that my improved
-        version of the Glicko2 rating system has the potential to be a valuable tool for evaluating the skill levels of
-        players in competitive games, and I am excited to see how it might be applied in the future.</p> <br><br>
-
-        <p class="center-align">
-          <a class="waves-effect waves-light btn-large purple" href="https://josephghanimah.com/smash">Check out my rating system in action!</a>
-        </p>
-
-      <br><br><br><br><br>
-
+            <div class="text-center mt-5">
+                <a class="btn btn-primary btn-lg" href="{{ url_for('main.smash') }}" target="_blank">
+                    <i class="fas fa-trophy me-2"></i>See It In Action: Smash Rankings
+                </a>
+            </div>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
-
-
-<br><br><br><br><br><br><br>
-
 {% endblock content %}

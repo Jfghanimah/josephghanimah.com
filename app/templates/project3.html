@@ -1,61 +1,77 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-  .parallax_layer_back {
-    height: 1200px !important;
-  }
-</style>
 
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-11 col-lg-10 col-xl-9">
+      
+      <!-- Frosted Glass Pane -->
+      <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background-color: rgba(20,20,25,0.88); backdrop-filter: blur(10px);">
+        
+        <!-- Project Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-light text-light">Reinforcement Learning Snake AI</h1>
+            <p class="lead text-body-secondary">Mastering a classic game with AlphaZero-inspired techniques.</p>
+        </div>
+        
+        <!-- Hero Image (GIF) -->
+        <div class="text-center mb-5">
+            <img src="{{ url_for('static', filename='images/Snake-ai-video.gif') }}" class="img-fluid rounded-3 shadow-lg" alt="Snake AI in action" style="border: 1px solid rgba(255,255,255,0.1);">
+        </div>
 
-<!-- Picture and Intro -->
-<div class="container center-align white-text fade-in">
-  <br><br>
-  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
-  <h1>Joseph F. Ghanimah</h1>
-  <br><br><br>
-</div>
+        <!-- Main Content -->
+        <div>
+            <h2 class="h4 text-info fw-bold">The Goal: Achieving Superhuman Foresight</h2>
+            <p class="text-body-secondary mb-4">
+                The game of Snake, while simple in its rules, is a profound challenge in long-term planning. A purely greedy approach (always moving towards the apple) inevitably leads to self-trapping. My objective was to move beyond simple heuristics and create an AI that could learn to play with true foresight, aiming to fill the entire board by building its own understanding of strategy through reinforcement learning.
+            </p>
 
-<!-- Project Slab -->
-<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+            <h3 class="h5 text-light mt-4">Architecture Inspired by AlphaZero</h3>
+            <p class="text-body-secondary mb-4">
+                This project's architecture is a direct adaptation of the principles laid out in DeepMind's groundbreaking <a href="https://arxiv.org/pdf/1712.01815" target="_blank" class="link-info">AlphaZero paper</a>. The core of the system is a powerful combination of a deep neural network and a Monte Carlo Tree Search (MCTS) algorithm. The neural network learns to evaluate board positions and suggest moves, while the tree search explores future possibilities to find the optimal path.
+            </p>
+            
+            <h3 class="h5 text-light mt-4 border-bottom border-secondary pb-2 mb-3">The Core Components</h3>
+            
+            <p class="text-body-secondary mb-2">
+                The AI's "brain" was built on three interconnected components that work in a continuous loop of learning and refinement:
+            </p>
+            <ul class="text-body-secondary">
+                <li class="mb-2">
+                    <strong>Self-Play Reinforcement Learning:</strong> The foundation of the training process. The AI plays thousands of games against itself to generate data. In each game, it learns from its successes and failures, gradually improving its strategy from a state of complete randomness to one of deep tactical understanding. This generated data is crucial for training the neural network.
+                </li>
+                <li class="mb-2">
+                    <strong>A Dual-Headed Neural Network:</strong> This is the heart of the learned intuition. The network takes the current game state (the board) as input and produces two outputs:
+                    <ul>
+                        <li>A <b>Policy Head</b>, which outputs a probability distribution over possible next moves. It essentially answers the question, "What are the most promising moves to explore from here?"</li>
+                        <li>A <b>Value Head</b>, which outputs a single scalar value from -1 to 1. This value estimates the expected outcome of the game from the current position (e.g., win/loss or a score proxy), answering, "How good is this board state for me?"</li>
+                    </ul>
+                </li>
+                <li class="mb-2">
+                    <strong>Monte Carlo Tree Search (MCTS) with Alpha-Beta Pruning:</strong> For each move during a game, the AI doesn't just trust the neural network's initial guess. It performs a sophisticated lookahead search. The MCTS builds a search tree of future moves, guided by the network's policy. The value output from the network is used to evaluate the leaves of this tree. To make the search more efficient, I implemented <b>alpha-beta pruning</b>, a technique that dramatically reduces the number of nodes the search needs to evaluate by ignoring branches that are provably worse than a path already found.
+                </li>
+            </ul>
 
-  <div class="section container">
-    <br id="bio">
-    <div class="row">
-
-      <h1 class="center-align">Snake AI</h1>
-      <br><br>
-      <p class="flow-text">In another somewhat machine learning related project, I decided to create a Snake Game AI. My
-        main objective
-        was to create an AI that could not only collect the apples (which is a common goal in Snake games), but also
-        complete the game by filling out the board. To do this, I explored a variety of different models and algorithms,
-        trying out different approaches and tweaking my parameters to see what worked best.
-      </p> <br>
-
-      <p class="center-align">
-        <img width="500px" style="border-radius:0%;" src="{{ url_for('static',filename='images/Snake-ai-video.gif') }}">
-      </p> <br>
-
-      <p class="flow-text">One of the challenges I faced in this project was finding a way to balance the trade-off
-        between exploration and exploitation. On the one hand, the Snake AI needed to explore the game board and try out
-        different strategies in order to find the most efficient path to completion. On the other hand, it also needed
-        to be able to exploit its knowledge of the game and make smart, calculated moves in order to maximize its
-        chances of success.
-      </p> <br>
-      <p class="flow-text">In the end, I was able to create a Snake Game AI that was able to complete the game with a
-        high degree of efficiency, but interestingly enough not better than I could do manually step by step. Overall
-        snake game requires a significant amount of foresight. It was a challenging and rewarding project that allowed
-        me to explore the latest
-        advances in machine learning and apply my skills to a fun and engaging problem.
-      </p> <br>
-      <br><br><br><br><br>
-
+            <h3 class="h5 text-light mt-4">Learning and Results</h3>
+            <p class="text-body-secondary mb-4">
+                The training process was a remarkable thing to watch. The agent started by bumping into walls and its own tail, but through self-play, it quickly learned to survive, then to hunt apples efficiently, and finally, to master complex, board-filling maneuvers. The synergy between the learned intuition of the neural network and the deliberate, "what-if" analysis of the tree search allowed the AI to develop strategies that were not explicitly programmed.
+            </p>
+            <p class="text-body-secondary">
+                This project was a deep dive into the practical application of modern reinforcement learning. It was a challenging and rewarding experience to adapt the abstract concepts from the AlphaZero paper into a concrete, functioning system that could learn and master a complex task from scratch.
+            </p>
+            
+            <!-- Add a link to the repo if it's public -->
+            <!-- 
+            <div class="text-center mt-5">
+                <a class="btn btn-primary btn-lg" href="#" target="_blank">
+                    <i class="fab fa-github fa-fw me-2"></i>View Project on GitHub
+                </a>
+            </div>
+            -->
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
-
-
-<br><br><br><br><br><br><br>
-
 {% endblock content %}

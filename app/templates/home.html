@@ -1,257 +1,176 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- Picture and Intro -->
-<div class="container center-align white-text fade-in">
-  <br><br>
-  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
-  <h1>Joseph F. Ghanimah</h1>
-  <p class="grey-text text-lighten-1" style="font-size: calc(1.5vw + 10px);">
-    I'm a Senior at The University of Illinois at Urbana-Champaign. Majoring in Computer Engineering with minors in
-    Mathematical Statistics and Data Science. I have past experience in various projects involving Machine Learning,
-    Data Science, Predictive
-    analytics, and Cloud Computing using tools such as Python, Flask, Django, C++, TensorFlow, and Google Cloud
-    Platform.
+<!-- Picture, Intro, and Mission -->
+<div class="container text-center py-5 fade-in">
+  <img width="300" height="300" class="rounded-circle img-fluid mb-4 shadow-lg" src="{{ url_for('static',filename='images/headshot-square.jpg') }}" alt="Joseph F. Ghanimah">
+  <h1 class="display-3 fw-light text-light mb-3">Joseph F. Ghanimah</h1> 
+
+  <p class="text-body-secondary mb-4" style="font-size: calc(1.2rem + 0.4vw);">
+    I'm an engineer specializing in the intersection of machine learning, data science, and statistics. I build intelligent systems that solve complex problems, from developing predictive trading algorithms to architecting full-stack applications that serve ML models. My passion is in translating theoretical concepts into practical, high-performance software, an expertise built upon a rigorous foundation in Computer Engineering from the University of Illinois at Urbana-Champaign (UIUC).
   </p>
-  <br><br><br>
+  
+
 </div>
 
-<!-- Project Slab -->
-<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
-
-  <nav>
-    <div class="center">
-      <ul style = "display:flex; justify-content:center;">
-        <li class="top"><a href="#mission" style="font-size: calc(1.3vw + 7px);">Mission</a></li>
-        <li class="top"><a href="#webdev" style="font-size: calc(1.3vw + 7px);">Web Dev</a></li>
-        <li class="top"><a href="#ml" style="font-size: calc(1.3vw + 7px);">ML</a></li>
-        <li class="top"><a href="#miscproj" style="font-size: calc(1.3vw + 7px);">Misc.</a></li>
-        <li class="top"><a href="#resume" style="font-size: calc(1.3vw + 7px);">Resume</a></li>
-      </ul>
-    </div>
-  </nav>
+<!-- Horizontal Rule after Intro/Mission -->
+<div class="container">
+    <hr class="my-5 border-light border-2 opacity-50">
+</div>
 
 
-  <div class="section container" style="width:85%">
-    <!-- Mission Section-->
-    <br id="mission">
-    <div class="row">
-
-      <h1 class="center-align">Mission</h1>
-      <br>
-      <p class="flow-text center-align"> I am passionate about using data to solve problems and drive innovation, and my
-        strong
-        background in machine learning and data science, along with my adaptability and critical thinking skills, make
-        me an ideal candidate to contribute to this mission. I am a versatile problem-solver with a keen interest in
-        staying informed and constantly improving my work, and I am eager to use my skills and expertise to make a
-        positive impact in my field. I hope you enjoy some of my works below.</p>
-      <br><br><br><br><br>
-
-    </div>
-    <div class="divider"></div>
-
-    <!-- Web Dev Section-->
-    <br id="webdev">
-    <div class="row">
-
-      <h1 class="center-align">Web Dev</h1>
-      <br>
-
-      <div class="col m12 l6">
-        <article class="card grey darken-3 z-depth-1">
-
-          <div class="card-image">
-            <img src="static/images/mysite.jpg">
-            <span class="card-title card transparent-1">This Site!</span>
+<!-- Project Sections -->
+<div class="container py-4"> <!-- Container for all project sections -->
+    
+    <section id="webdev" class="mb-5"> <!-- Added mb-5 for more space between sections -->
+      <h2 class="display-5 fw-normal text-center mb-4 text-light">Personal Projects</h2>
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='images/mysite.jpg') }}" class="card-img-top" alt="This Website Project">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">This Site!</h5>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">This personal website showcases my work and skills in Python (Flask), HTML, CSS, and JS, built with Bootstrap 5.</p>
+              <div class="mt-auto pt-2">
+                 <a class="btn btn-outline-info" href="https://github.com/Jfghanimah/josephghanimah.com" target="_blank">View on Github</a>
+              </div>
+            </div>
           </div>
-
-          <div class="card-content">
-            <span class="card-title">
-              <p class="blue-text text-lighten-1"><i class="material-icons">date_range</i> 04/28/2023 </p>
-            </span>
-            <p> This is a work in progress website that will showcase the work of Joseph Ghanimah.
-              It also serves as a way to demonstrate my skills in Python (Flask), HTML, CSS, and JS. </p>
-          </div>
-
-          <div class="card-action">
-            <a class="blue-text" href="https://github.com/Jfghanimah/josephghanimah.com">Github Repository </a>
-          </div>
-        </article>
-      </div>
-
-      <div class="col m12 l6">
-        <article class="card grey darken-3 z-depth-1">
-
-          <div class="card-image">
-            <img src="static/images/collegecod.jpg">
-            <span class="card-title card transparent-1">Collegecod.com</span>
-          </div>
-
-          <div class="card-content">
-            <span class="card-title">
-              <p class="blue-text text-lighten-1"><i class="material-icons">date_range</i> 9/16/2019 - Ongoing</p>
-            </span>
-            <p>Perhaps one day these cards will link to pages that go into further detail
-              on the projects they showcase. This right here is text that you are reading.</p>
-          </div>
-
-          <div class="card-action">
-            <a class="blue-text" href="https://collegecod.com" target="_blank">Website Link</a>
-          </div>
-
-        </article>
-      </div>
-
-    </div>
-    <div class="divider"></div>
-
-
-    <!-- Machine Learning Section -->
-    <br id="ml">
-    <div class="row">
-
-      <h1 class="center-align">Machine Learning</h1>
-      <br>
-
-      <div class="col m12 l4">
-        <article class="card grey darken-3 z-depth-1">
-          <div class="card-image">
-            <img src="static/images/lolmap.jpg">
-            <span class="card-title card transparent-1">LoL Draft Analyzer</span>
-          </div>
-
-          <div class="card-content">
-            <span class="card-title">
-              <p class="blue-text text-lighten-1"><i class="material-icons">date_range</i> 10/30/2022 </p>
-            </span>
-            <p>loldraft-analyzer is a machine learning model that predicts the outcome of League of Legends matches
-              based on drafted champions
-            </p>
-          </div>
-          <div class="card-action">
-            <a class="blue-text" href="{{ url_for('main.lol_draft_project') }}">Learn more</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="col m12 l4">
-        <div class="card grey darken-3">
-          <div class="card-image">
-            <img src="static/images/dcgan.gif">
-            <span class="card-title card transparent-1">DCGAN</span>
-          </div>
-          <div class="card-content">
-            <span class="card-title">
-              <p class="blue-text text-lighten-1"><i class="material-icons">date_range</i> 01/01/2020 </p>
-            </span>
-            <p>My Deep Convolutional Generative Adversarial Network project uses two models to generate and distinguish
-              real and fake numbers.</p>
-          </div>
-          <div class="card-action">
-            <a class="blue-text" href="{{ url_for('main.dcgan_project') }}">Learn more</a>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='images/collegecod.jpg') }}" class="card-img-top" alt="CollegeCOD Project">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Collegecod.com</h5>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">A platform for collegiate Call of Duty. Exploring features and community engagement.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="https://collegecod.com" target="_blank">Visit Website</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+    
 
-      <div class="col m12 l4">
-        <div class="card grey darken-3">
-          <div class="card-image">
-            <img src="static/images/snake_game_ai.jpg">
-            <span class="card-title card transparent-1">Perfect Snake AI</span>
+    <section id="ml" class="mb-5">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col d-flex">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='images/lolmap.jpg') }}" class="card-img-top" alt="LoL Draft Analyzer">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">LoL Draft Analyzer</h5>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">Predicting LoL match outcomes from champion drafts using machine learning techniques.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.lol_draft_project') }}">Learn More</a>
+              </div>
+            </div>
           </div>
-          <div class="card-content">
-            <span class="card-title">
-              <p class="blue-text text-lighten-1"><i class="material-icons">date_range</i> 12/23/2021 </p>
-            </span>
-            <p>My Snake Game AI project explores and compares different algorithms for completing the game as
-              efficiently as possible to perfection</p>
+        </div>
+
+        <div class="col d-flex">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='images/discord_bot_hero.jpg') }}" class="card-img-top" alt="Discord LLM Bot">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Discord LLM Chatbot</h5>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">A custom-trained Large Language Model integrated into a Discord server to provide contextual, engaging, and useful interactions for a community.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.discord_bot_project') }}">Learn More</a>
+              </div>
+            </div>
           </div>
-          <div class="card-action">
-            <a class="blue-text" href="{{ url_for('main.snake_ai_project') }}">Learn more</a>
+        </div>
+
+        <div class="col d-flex">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='images/snake_game_ai.jpg') }}" class="card-img-top" alt="Snake Game AI">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Perfect Snake AI</h5>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">Exploring algorithms for an AI to achieve perfect play in the Snake game.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.snake_ai_project') }}">Learn More</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+    
 
-    </div>
-    <div class="divider"></div>
-
-
-    <!-- Misc Proj Section-->
-    <br id="miscproj">
-    <div class="row">
-
-      <h1 class="center-align">Miscellaneous Projects</h1>
-      <br>
-
-      <div class="col m12 l6">
-        <article class="card grey darken-3 z-depth-1">
-
-          <div class="card-image">
-            <img src="static/images/tax.jpg">
-            <span class="card-title card transparent-1">Improved Glicko2 Rating System</span>
+    <section id="miscproj" class="mb-5">
+      <div class="row g-4">
+         <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='images/glicko.jpg') }}" class="card-img-top" alt="Improved Glicko2 Rating">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Improved Glicko2</h5>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">An enhanced Glicko2 rating system for more accurate player skill measurement.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.rating_project') }}">Learn More</a>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="card-content">
-            <span class="card-title">
-              <p class="blue-text text-lighten-1"><i class="material-icons">date_range</i> 1/15/2022 </p>
-            </span>
-            <p> My improved Glicko2 rating system accurately measures the skill level of players in various competitive
-              games using advanced algorithms and techniques. </p>
+        <div class="col-12 col-lg-6">
+          <div class="card text-bg-dark h-100 border-0 shadow-lg" style="--bs-bg-opacity: .65; backdrop-filter: blur(4px);">
+            <div class="position-relative">
+                <img src="{{ url_for('static', filename='images/trading_bot_hero.jpg') }}" class="card-img-top" alt="Algorithmic Trading Bot">
+                <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+                    <h5 class="card-title p-3 mb-0" style="background-color: rgba(10,10,15,0.75);">Algorithmic Trading Bot</h5>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <p class="card-text">A multi-strategy algorithmic trading bot designed to automate quantitative strategies and manage risk on a live brokerage account.</p>
+              <div class="mt-auto pt-2">
+                <a class="btn btn-outline-info" href="{{ url_for('main.algo_trading_project') }}">Learn More</a>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div class="card-action">
-            <a class="blue-text" href="{{ url_for('main.rating_project') }}">Learn more</a>
-          </div>
-        </article>
       </div>
+    </section>
+  
+    <hr class="my-5 border-light border-2 opacity-50">
 
-      <div class="col m12 l6">
-        <article class="card grey darken-3 z-depth-1">
-
-          <div class="card-image">
-            <img src="static/images/project1.webp">
-            <span class="card-title card transparent-1">Weight Lifting Social App</span>
-          </div>
-
-          <div class="card-content">
-            <span class="card-title">
-              <p class="blue-text text-lighten-1"><i class="material-icons">date_range</i> 9/16/2022 - Ongoing</p>
-            </span>
-            <p>My Social Weight Lifting App is a fitness tracking and social networking platform for users to track
-              their progress and connect with other fitness enthusiasts.</p>
-          </div>
-
-          <div class="card-action">
-            <a class="blue-text" href="{{ url_for('main.lifting_app_project') }}">Learn more</a>
-          </div>
-
-        </article>
-      </div>
-
-    </div>
-    <div class="divider"></div>
-
-
-
-    <!-- Resume Section -->
-    <br id="resume">
-    <div class="row">
-
-      <h1 class="center-align">Resume</h1>
-      <br>
-      <div class="col s12 center-align">
-        <a href="static/JosephResume.pdf" target="_blank">
-          <img class="center-align" src="static/images/resume.jpg" width="656" height="800">
+    <section id="resume" class="text-center"> <!-- Removed mb-5 from last section -->
+      <h2 class="display-5 fw-normal mb-4 text-light">Resume</h2>
+      <div class="col-md-10 col-lg-8 mx-auto">
+        <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="d-block mb-3">
+          <img class="img-fluid rounded shadow-lg" src="{{ url_for('static',filename='images/resume.jpg') }}" alt="Resume Preview" style="max-width: 400px; border: 1px solid rgba(255,255,255,0.2);">
+        </a>
+         <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="btn btn-primary btn-lg">
+          <i class="fas fa-download me-2"></i> View Resume (PDF)
         </a>
       </div>
-      <p>&#160;</p>
-      <br><br>
-      <br>
-
-    </div>
-  </div>
+    </section>
 </div>
 
-<br><br><br><br><br><br><br>
+<div class="py-5"></div> <!-- Bottom padding before footer -->
 
 {% endblock content %}

@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark"> <!-- Set dark theme for Bootstrap -->
 
 <head>
-
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <meta name="theme-color" content="#a185ff" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#212529" /> <!-- Dark theme color -->
   <meta name="description" content="My personal website." />
 
-  {% if title %}
-    <title>Joseph Ghanimah | {{title}}</title>
-  {% else %}
-    <title>Joseph Ghanimah</title>
-  {% endif %}
+  <title>Joseph Ghanimah</title>
   
-  <!-- Open Graph XML -->
+  <!-- Open Graph XML (No changes here) -->
   <meta property="og:title" content="Joseph Ghanimah" />
   <meta property="og:description" content="My personal website." />
   <meta property="og:type" content="website" />
@@ -23,24 +18,22 @@
   <meta property="og:image:width" content="600" />
   <meta property="og:image:height" content="300" />
 
-  <!-- To get Video functionality -->
-  <!-- Cant this just be on the video template? not the base? -->
-  <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
-
   <!-- Icon for top of the page -->
   <link rel="icon" type="image/x-icon" href="{{ url_for('static',filename='favicon.ico') }}">
-  <!-- Google fonts API -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;700&display=swap" rel="stylesheet">
-  <!-- Materialize CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-  <!-- Project CSS  -->
+  
+  <!-- Google Fonts API -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS (Bootstrap 5.3.x) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome for icons (Updated to v6.x) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <!-- Project Custom CSS (load AFTER Bootstrap) -->
+  <!-- These imports are inside style.css, so only style.css needs to be linked -->
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
-  <!-- reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115374634-3"></script>
   <script>
@@ -50,112 +43,115 @@
     gtag('config', 'UA-115374634-3');
   </script>
 
+  <style>
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 300;
+    }
+  </style>
+
 </head>
 
-<body>
-
+<body class="d-flex flex-column min-vh-100">
   <div class="parallax_group">
-    <div class="parallax_layer parallax_layer_back">
-    </div>
-    
-    <div class="parallax_layer parallax_layer_front">
+    <div class="parallax_layer parallax_layer_back"></div>
+    <div class="parallax_layer parallax_layer_front d-flex flex-column flex-grow-1">
       
-      <!-- HEADER -->
       <header>
-        <!-- Top navbar -->
-        <div class="navbar-fixed">
-          <nav role="navigation">
-            <div class="nav-wrapper container">
-              <a class="top large material-icons" href="{{ url_for('main.home') }}">home</a>
-              <ul class="top right hide-on-med-and-down" >
-                <li class="top"><a href="{{ url_for('main.home') }}" style="font-size: 1.3rem;"> Home</a></li>
-                <li class="top"><a href="{{ url_for('main.about') }}" style="font-size: 1.3rem;"> About Me</a></li>
-                <li class="top"><a href="https://github.com/Jfghanimah" target="_blank" style="font-size: 1.3rem;"><i class="fab fa-github" style="font-size: 1.2rem;"></i> Github</a></li>
-                <li class="top"><a href="https://www.linkedin.com/in/joseph-ghanimah/" target="_blank" style="font-size: 1.3rem;"><i class="fab fa-linkedin" style="font-size: 1.2rem;"></i> Linkedin</a></li>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(10,10,10,0.85); backdrop-filter: blur(5px);">
+          <div class="container">
+            <a class="navbar-brand" href="{{ url_for('main.home') }}">
+              <i class="fas fa-home"></i>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link {% if request.endpoint == 'main.home' %}active{% endif %}" href="{{ url_for('main.home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% if request.endpoint == 'main.about' %}active{% endif %}" href="{{ url_for('main.about') }}">About Me</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('main.redirect_resume') }}" target="_blank">Resume</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/Jfghanimah" target="_blank">
+                    <i class="fab fa-github fa-fw"></i> Github
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.linkedin.com/in/joseph-ghanimah/" target="_blank">
+                    <i class="fab fa-linkedin fa-fw"></i> Linkedin
+                  </a>
+                </li>
               </ul>
-              <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            </div>
-          </nav>
-        </div>
-    
-        <!-- Mobile navbar -->
-        <ul id="nav-mobile" class="sidenav" id="mobile-links">
-          <li><a href="{{ url_for('main.home') }}">Home</a></li>  
-          <li><a href="{{ url_for('main.about') }}">About Me</a></li> <!-- perhaps add github and linkedin -->     
-          <li class="top"><a href="{{ url_for('main.home') }}">Blog</a></li>
-        </ul>
-    
-        <div class="container center-align">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-          {% for category, message in messages %}
-          <div class="row card alert_box {{category}}" id='alert_box'>
-            <div class="card-content white-text">
-              <p> {{ message }} </p>
-              <i class="fa fa-times right alert_close" id="alert_close" aria-hidden="true" style="
-                        position: absolute;
-                        right: 30px;
-                        top: 25px;
-                        font-size: 18px;
-                        cursor:pointer; "></i>
             </div>
           </div>
-          {% endfor %}
-          {% endif %}
-          {% endwith %}
-        </div>
-    
+        </nav>
       </header>
 
-      <!-- CONTENT -->
-      {% block content %}
-      {% endblock %}
 
-      <!-- FOOTER -->
-      <footer class="page-footer" id="footer-settings">
+
+      <!-- CONTENT BLOCK -->
+      <!-- flex-grow-1 allows main content to expand and push footer down -->
+      <main class="flex-grow-1"> 
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      <footer class="footer mt-auto py-3 text-bg-dark">
         <div class="container">
-          <div class="row">
-
-            <div class="col l10 s12">
-              <h5 class="grey-text text-lighten-1">Resources</h5>
-              <ul>
-                <li><a href="#">placeholder@gmail.com</a></li>
-                <li>Sorry! I'm getting so much spam from bots right now!</li>
-                <li>After I figure out how to prevent spam it will be back up :)</li>
+          <div class="row justify-content-center gy-3"> <!-- gy-3 for vertical gutter on small screens -->
+            <div class="col-md-4 text-center text-md-start">
+              <h5>Connect</h5>
+              <ul class="list-unstyled">
+                <li>
+                  <a class="link-light" href="https://github.com/Jfghanimah" target="_blank">
+                    <i class="fab fa-github fa-fw me-2"></i>Github
+                  </a>
+                </li>
+                <li>
+                  <a class="link-light" href="https://www.linkedin.com/in/joseph-ghanimah/" target="_blank">
+                    <i class="fab fa-linkedin fa-fw me-2"></i>Linkedin
+                  </a>
+                </li>
               </ul>
             </div>
-            <div class="col l2 s12">
-              <h5 class="grey-text text-lighten-1">Links</h5>
-              <ul>
-                <li><a class="" href="https://github.com/Jfghanimah" target="_blank">
-                    <i class="fab fa-github"> </i> Github</a></li>
-                <li><a class="" href="https://www.linkedin.com/in/joseph-ghanimah/" target="_blank">
-                    <i class="fab fa-linkedin"> </i> Linkedin</a></li>
+            <div class="col-md-4 text-center">
+              <h5>Quick Links</h5>
+              <ul class="list-unstyled">
+                 <li>
+                  <a class="link-light" href="{{ url_for('main.home') }}">Home</a>
+                </li>
+                <li>
+                  <a class="link-light" href="{{ url_for('main.about') }}">About Me</a>
+                </li>
+                <li>
+                  <a class="link-light" href="{{ url_for('main.redirect_resume') }}" target="_blank">Resume</a>
+                </li>
               </ul>
             </div>
           </div>
         </div>
-        <div style="text-align:center;" class="footer-copyright">
-          <div style="text-align:center;" class="container grey-text text-lighten-2">
-            <p> © 2024 Joseph Ghanimah - v1.1</p>
-          </div>
+        <div class="text-center py-3 mt-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          <span class="text-light">© 2025 Joseph Ghanimah</span> <br>
+          <span class="text-light">Web Version 1.4</span> 
         </div>
       </footer>
-      
-    </div>
+    </div> <!-- End parallax_layer_front -->
+  </div> <!-- End parallax_group -->
 
-  </div>
- 
+  <!-- Bootstrap JS Bundle (Bootstrap 5.3.x) - No jQuery needed for BS5 components -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!--  Scripts-->
-  <!-- Compiled and minified JavaScript?? -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="{{ url_for('static',filename='js/init.js') }}"></script>  
+  <!-- Parallax Script (No changes here) -->
   <script src="{{ url_for('static',filename='js/parallax.js') }}"></script>
-  
+
   {% block scripts %}
   {% endblock %}
 </body>
-
 </html>

@@ -1,66 +1,76 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-  .parallax_layer_back {
-    height: 1200px !important;
-  }
-</style>
 
+<div class="container py-5 fade-in">
+  <div class="row justify-content-center">
+    <div class="col-11 col-lg-10 col-xl-9">
+      
+      <!-- Frosted Glass Pane -->
+      <div class="p-4 p-md-5 rounded-4 shadow-lg" style="background-color: rgba(20,20,25,0.70); backdrop-filter: blur(10px);">
+        
+        <!-- Project Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-light text-light">LoL Draft Analyzer</h1>
+            <p class="lead text-body-secondary">Predicting match outcomes using only champion selections.</p>
+        </div>
+        
+        <!-- Hero Image -->
+        <div class="text-center mb-5">
+            <img src="{{ url_for('static', filename='images/lolmap.jpg') }}" class="img-fluid rounded-3 shadow-lg" alt="League of Legends Map" style="max-width: 400px;  border: 1px solid rgba(255,255,255,0.1);">
+        </div>
 
-<!-- Picture and Intro -->
-<div class="container center-align white-text fade-in">
-  <br><br>
-  <img width="300px" style="border-radius:50%;" src="{{ url_for('static',filename='images/headshot-square.jpg') }}">
-  <h1>Joseph F. Ghanimah</h1>
-  <br><br><br>
-</div>
+        <!-- Main Content -->
+        <div>
+            <h2 class="h4 text-info fw-bold">The Challenge: Decoding the Draft</h2>
+            <p class="text-body-secondary mb-4">
+                In competitive League of Legends, victory is often decided before the game even begins. The "pick/ban" phase, where teams select their champions, is a complex strategic dance. With over 160 champions, each with unique abilities and synergies, the number of possible team compositions is astronomical. Can a machine learning model cut through this complexity and predict a winner based solely on the 10 champions chosen? This project was my attempt to answer that question.
+            </p>
 
-<!-- Project Slab -->
-<div id="slab" class="z-depth-2 container darken-4 white-text fade-in">
+            <h3 class="h5 text-light mt-4">Project Overview</h3>
+            <p class="text-body-secondary mb-4">
+                The LoL Draft Analyzer is a deep neural network designed to predict match outcomes. By training on a massive dataset of past games, the model learns the intricate relationships and power dynamics between champion compositions. It doesn't know about player skill, in-game events, or item builds; its predictions are a pure reflection of the strategic advantage gained during the draft. The model consistently achieves around 55% accuracy, a significant signal in a system with near-infinite variables.
+            </p>
 
-  <div class="section container">
-    <br id="bio">
-    <div class="row">
+            <!-- Second Image -->
+            <div class="text-center my-5">
+                <figure class="figure">
+                    <img src="{{ url_for('static', filename='images/loldraft.png') }}" class="figure-img img-fluid rounded shadow" alt="Riot Games API and data processing diagram">
+                    <figcaption class="figure-caption text-body-secondary mt-2">Data pipeline: Sourcing match IDs from players, fetching match data via the Riot API, and preprocessing for the model.</figcaption>
+                </figure>
+            </div>
+            
+            <h3 class="h5 text-light mt-4 border-bottom border-secondary pb-2 mb-3">Technical Deep Dive</h3>
+            
+            <h4 class="h6 text-info">Data Acquisition & Preprocessing</h4>
+            <p class="text-body-secondary mb-4">
+                The foundation of any good model is its data. I developed a set of Python scripts to systematically build a dataset. The process begins by fetching a list of high-ranking players, then spidering through their match histories via the official Riot Games API to collect thousands of unique match IDs. Each match is then queried for its outcome and the 10 champions involved. A key preprocessing step, as seen in the code, was to convert champion names into integer IDs for the model's embedding layer. I also balanced the dataset by duplicating every match with the teams and win/loss condition swapped, effectively doubling the data and removing any inherent "blue side" or "red side" advantage from the training set.
+            </p>
 
-      <h1 class="center-align">Lol Draft Analyzer</h1>
-      <br><br>
-      <p class="flow-text">
-        The lol draft analyzer is a machine learning model that is designed to predict the outcome of a fixed match
-        between two teams in the game League of Legends based on the champions that are drafted by each team. This model
-        is trained using data from past matches, and is designed to accurately predict the outcome of future matches
-        based on the champions that are selected. The lol draft analyzer can be a valuable tool for players and teams
-        looking to improve their strategy and performance in the game, as well as for analysts and commentators who want
-        to gain insight into the factors that can impact the outcome of a match.
-      </p> <br>
+            <h4 class="h6 text-info">The Neural Network Architecture</h4>
+            <p class="text-body-secondary mb-4">
+                I chose a sequential, fully-connected deep neural network (DNN) built with TensorFlow. The architecture's key feature is its input layer:
+                <ul>
+                    <li class="text-body-secondary">An <b>Embedding Layer</b> that takes the 10 champion IDs as input. Instead of one-hot encoding, this layer learns a dense vector representation for each of the 162 champions. This allows the model to understand abstract relationships, like which champions are similar or work well together, in a multi-dimensional space.</li>
+                    <li class="text-body-secondary">The flattened output is then passed through several <b>Dense Layers</b> with ReLU activation, `BatchNormalization` to stabilize training, and `Dropout` to prevent overfitting.</li>
+                    <li class="text-body-secondary">The final layer is a single neuron with a <b>Sigmoid activation function</b>, outputting a probability between 0 and 1 representing the likelihood of victory for the first team.</li>
+                </ul>
+            </p>
 
-      <p class="center-align">
-        <img  width="500px" style="border-radius:2%;" src="{{ url_for('static',filename='images/draft-api.png') }}">
-      </p> <br>
+             <h4 class="h6 text-info">An Interesting Hurdle: The Bias of Champion Win-Rates</h4>
+            <p class="text-body-secondary mb-4">
+                An early challenge was the inherent bias from individual champion win-rates. Some champions are simply stronger on average, and the model could be tempted to just bet on the team with the "better" champions. I experimented with a data balancing function (`balance_winrates`) to programmatically remove winning games from outlier champions to normalize their win-rates closer to 50%. While the function worked as intended, I found it didn't significantly improve the final model's predictive power and reduced the dataset size. This was a valuable lesson: sometimes, allowing the model to learn the inherent strengths of champions is part of capturing the meta-game, and over-normalizing the data can remove important signals.
+            </p>
 
-      <p class="flow-text">
-        One of the key challenges in creating a model like the lol draft analyzer is the large number of champions that
-        are available in the game, and the complex interactions between them. Each champion has unique abilities and
-        strengths, and the way that they are used can significantly impact the outcome of a match. In order to
-        accurately predict the outcome of a match, the lol draft analyzer needs to be able to consider the full range of
-        potential champion combinations and their interactions.
-      </p> <br>
-      <p class="flow-text">
-        Despite these challenges, the lol draft analyzer has shown promising results in early testing, with an accuracy
-        of around 55% in predicting the outcome of matches. While this accuracy is still improving, it is a significant
-        achievement given the complexity of the problem and the relatively small amount of data that is available. As
-        the model continues to learn and improve, it is expected that the accuracy of its predictions will increase over
-        time. In addition to its potential value for players and teams, the lol draft analyzer could also be a valuable
-        resource for analysts and commentators looking to gain insights into the factors that can impact the outcome of
-        a match.
-      </p><br>
+            <div class="text-center mt-5">
+                <a class="btn btn-primary btn-lg" href="https://github.com/Jfghanimah/loldraft-analyzer" target="_blank">
+                    <i class="fab fa-github fa-fw me-2"></i>View Project on GitHub
+                </a>
+            </div>
 
+        </div>
+      </div>
     </div>
-
   </div>
 </div>
-
-
-<br><br><br><br><br><br><br>
-
 {% endblock content %}

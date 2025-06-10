@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+  /* This targets the header cells (th) specifically within your table */
+  .table > thead > tr > th {
+    text-align: center;
+  }
+</style>
+
 
 <div class="container py-5 fade-in">
   <div class="row justify-content-center">
@@ -16,7 +23,7 @@
         </div>
         
         <!-- Table Wrapper for Responsiveness -->
-        <div class="table-responsive">
+        <div class="table-responsive" style="text-align: center;">
             {{ table|safe }}
         </div>
 

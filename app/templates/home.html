@@ -165,10 +165,10 @@
       <h2 class="display-5 fw-normal mb-4 text-light">Resume</h2>
       <div class="col-md-10 col-lg-8 mx-auto">
         <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="d-block mb-3">
-          <img class="img-fluid rounded shadow-lg" src="{{ url_for('static',filename='images/resume.jpg') }}" alt="Resume Preview" style="border: 1px solid rgba(255,255,255,0.2);">
+          <img class="img-fluid rounded shadow-lg" src="{{ url_for('static',filename='images/resume.jpg') }}" alt="Resume Preview" style="max-width: 400px; border: 1px solid rgba(255,255,255,0.2);">
         </a>
          <a href="{{ url_for('static',filename='JosephResume.pdf') }}" target="_blank" class="btn btn-primary btn-lg">
-          <i class="fas fa-download me-2"></i> Download Resume (PDF)
+          <i class="fas fa-download me-2"></i> View Resume (PDF)
         </a>
       </div>
     </section>
